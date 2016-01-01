@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./test/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="ENVIRONMENT" value="testing"/>
+        <env name="IS_DEV_MODE" value="true"/>
+        <env name="CLAIM_ISSUER" value="test-iss"/>
+        <env name="CLAIM_SUBJECT" value="test-subject"/>
+        <env name="DOCTRINE_DRIVER" value="pdo_sqlite"/>
+    </php>
+</phpunit>
