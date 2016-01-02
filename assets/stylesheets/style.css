@@ -1,0 +1,59 @@
+header {
+   display: flex;
+   font-size: 130%;
+   font-family: sans-serif;
+   justify-content: space-between;
+   margin-bottom: 0.5em;
+   text-transform: capitalize;
+}
+
+body {
+   margin: 0;
+   padding: 1em;
+}
+
+body > header {
+   margin-bottom: 0.5em;
+}
+
+#mainNavigation {
+   padding: 0;
+   font-family: sans-serif;
+   display: block;
+   border-bottom: solid thin black;
+}
+
+#mainNavigation ol {
+   margin: 0;
+   padding: 0;
+}
+
+#mainNavigation li {
+   margin: 0.5em 0.25em 0.5em 0;
+   display: inline-block;
+}
+
+#mainNavigation label {
+   padding: 0.5em 0.5em;
+   color: white;
+   background-color: #8c6239;
+   cursor: pointer;
+}
+
+#mainNavigation label:hover {
+   color: white;
+   background-color: #005826;
+}
+
+#mainNavigation input {
+   display: none;
+}
+
+#mainNavigation input:checked ~ label {
+   color: white;
+   background-color: #005826;
+}
+
+.signedIn {
+   display: none;
+}
