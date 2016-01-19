@@ -1,11 +1,9 @@
 <?php namespace App;
 
-use Dotenv\Dotenv;
 use League\Container\Container;
+use Psr\Http\Message\ServerRequestInterface;
 use Relay\RelayBuilder;
 use Zend\Diactoros\Response;
-use Zend\Diactoros\Response\SapiEmitter;
-use Zend\Diactoros\ServerRequestFactory;
 
 class App
 {
@@ -34,11 +32,8 @@ class App
         );
     }
     
-    public function run()
+    public function run(ServerRequestInterface $request)
     {
-        $dotenv = new Dotenv(__DIR__ . '/..');
-        $dotenv->load();
-        
         $router = $this->container->get(Http\Router::class);
         $logger = $this->container->get(\Psr\Log\LoggerInterface::class);
         $jwtAuthorizer = $this->container->get(Auth\JwtAuthorizer::class);
@@ -55,10 +50,6 @@ class App
             new Middleware\FastRouteMiddleware($router->getRoutes()),
         ]);
         
-        $request = ServerRequestFactory::fromGlobals();
-        $response = $dispatcher($request, new Response());
-        
-        $emitter = new SapiEmitter();
-        $emitter->emit($response);
+        return $dispatcher($request, new Response());
     }
 }

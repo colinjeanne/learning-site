@@ -2,12 +2,21 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+function createClaimComparison(Claim $claim)
+{
+    return function ($key, Claim $otherClaim) use ($claim) {
+        return $otherClaim->getClaim() === $claim->getClaim();
+    };
+}
+
 /**
  * @Entity
  * @Table(name="Users")
  */
 class User
 {
+    const MAX_NUMBER_OF_CLAIMS = 5;
+    
     /**
      * @Id
      * @GeneratedValue
@@ -15,6 +24,12 @@ class User
      * @var int
      */
     private $id;
+    
+    /**
+     * @Column(type="string", length=255, nullable=false)
+     * @var string
+     */
+    private $name;
 
     /**
      * @OneToMany(targetEntity="App\Models\Claim", mappedBy="user")
@@ -28,6 +43,12 @@ class User
      * @var App\Models\Family
      */
     private $family;
+    
+    /**
+     * @OneToMany(targetEntity="App\Models\FamilyInvitation", mappedBy="user")
+     * @var App\Models\FamilyInvitations[]
+     */
+    private $invitations;
 
     /**
      * The Unix timestamp when this user was created
@@ -39,7 +60,9 @@ class User
 
     public function __construct()
     {
+        $this->name = '';
         $this->claims = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
         
         $now = new \DateTime("now");
         $this->created = $now->getTimestamp();
@@ -49,28 +72,54 @@ class User
     {
         return $this->id;
     }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name)
+    {
+        if (!is_string($name) || (strlen($name) > 255)) {
+            throw new \InvalidArgumentException('Invalid user name');
+        }
+        
+        $this->name = $name;
+    }
 
     public function addClaim(Claim $claim)
     {
-        if (!$this->claims->contains(function ($e) {
-            return $e->getClaim() === $user->getClaim();
-        })) {
+        $comparer = createClaimComparison($claim);
+        if (!$this->claims->exists($comparer)) {
+            if (count($this->claims) == self::MAX_NUMBER_OF_CLAIMS) {
+                throw new \InvalidArgumentException('Too many claims');
+            }
+            
             $this->claims[] = $claim;
         }
     }
     
-    public function family()
+    public function getFamily()
     {
         return $this->family;
     }
     
-    public function addToFamily(Family $family)
+    public function setFamily(Family $family)
     {
         if ($this->family) {
             throw new \InvalidArgumentException('Already part of a family');
         }
         
-        $family->addUser($this);
         $this->family = $family;
+    }
+    
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+    
+    public function addInvitation(FamilyInvitation $invitation)
+    {
+        $this->invitations[] = $invitation;
     }
 }

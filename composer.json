@@ -11,6 +11,7 @@
         "relay/relay": "^1.0",
         "respect/validation": "^2.0@dev",
         "vlucas/phpdotenv": "^2.1",
+        "willdurand/negotiation": "^2.0",
         "zendframework/zend-diactoros": "^1.2",
         "ext-mbstring": "*",
         "ext-openssl": "*",

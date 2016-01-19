@@ -1,11 +1,16 @@
 <?php namespace App\Http\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 
 class RootController
 {
-    public function getIndex($request, $response, $args)
-    {
+    public function getIndex(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) {
         return new HtmlResponse(
             $this->renderPage(__DIR__ . '/../../../assets/views/main.php'),
             $response->getStatusCode(),

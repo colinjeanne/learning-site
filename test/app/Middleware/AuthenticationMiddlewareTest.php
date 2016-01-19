@@ -2,7 +2,7 @@
 
 use App\Middleware\AuthenticationMiddleware;
 use Psr\Log\NullLogger;
-use Test\Middleware\Utilities\AuthenticationHandler;
+use Test\Middleware\Utilities\TestHandler;
 use Test\Middleware\Utilities\TestJwtAuthorizer;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
@@ -27,7 +27,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         $claims = [];
         $request = self::createRequest();
         $db = $this->createDatabase(true, true);
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $middleware = new AuthenticationMiddleware(
             new NullLogger(),
             $db,
@@ -47,7 +47,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
     public function testNonBearerAuthorization()
     {
         $claims = [];
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==');
         $db = $this->createDatabase(true, true);
         $middleware = new AuthenticationMiddleware(
@@ -69,7 +69,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
     public function testBearerMissingToken()
     {
         $claims = [];
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer');
         $db = $this->createDatabase(true, true);
         $middleware = new AuthenticationMiddleware(
@@ -99,7 +99,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
             'sub' => '1'
         ];
         
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer ' . $token);
         $db = $this->createDatabase(true, true);
         $middleware = new AuthenticationMiddleware(
@@ -129,7 +129,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
             'iss' => 'example.com'
         ];
         
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer ' . $token);
         $db = $this->createDatabase(true, true);
         $middleware = new AuthenticationMiddleware(
@@ -160,7 +160,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
             'sub' => '1'
         ];
         
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer ' . $token);
         $db = $this->createDatabase(false, false);
         $middleware = new AuthenticationMiddleware(
@@ -191,7 +191,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
             'sub' => '1'
         ];
         
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer ' . $token);
         $db = $this->createDatabase(true, false);
         $middleware = new AuthenticationMiddleware(
@@ -222,7 +222,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
             'sub' => '1'
         ];
         
-        $testHandler = new AuthenticationHandler();
+        $testHandler = new TestHandler();
         $request = self::createRequest('Bearer ' . $token);
         $db = $this->createDatabase(true, true);
         $middleware = new AuthenticationMiddleware(

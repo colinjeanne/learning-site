@@ -1,7 +1,7 @@
 <?php namespace Test\Middleware;
 
 use App\Middleware\FastRouteMiddleware;
-use Test\Middleware\Utilities\RouteHandler;
+use Test\Middleware\Utilities\TestHandler;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Uri;
@@ -34,8 +34,8 @@ class FastRouteMiddlewareTest extends \PHPUnit_Framework_TestCase
     
     public function testUnknownRoute()
     {
-        $rootHandler = new RouteHandler();
-        $otherHandler = new RouteHandler();
+        $rootHandler = new TestHandler();
+        $otherHandler = new TestHandler();
         $routes = [
             [
                 'method' => 'GET',
@@ -68,8 +68,8 @@ class FastRouteMiddlewareTest extends \PHPUnit_Framework_TestCase
     
     public function testKnownRouteWithoutArguments()
     {
-        $rootHandler = new RouteHandler();
-        $otherHandler = new RouteHandler();
+        $rootHandler = new TestHandler();
+        $otherHandler = new TestHandler();
         $routes = [
             [
                 'method' => 'GET',
@@ -103,8 +103,8 @@ class FastRouteMiddlewareTest extends \PHPUnit_Framework_TestCase
     
     public function testKnownRouteWithArguments()
     {
-        $rootHandler = new RouteHandler();
-        $otherHandler = new RouteHandler();
+        $rootHandler = new TestHandler();
+        $otherHandler = new TestHandler();
         $routes = [
             [
                 'method' => 'GET',
@@ -138,7 +138,7 @@ class FastRouteMiddlewareTest extends \PHPUnit_Framework_TestCase
     
     public function testMethodNotAllowed()
     {
-        $rootHandler = new RouteHandler();
+        $rootHandler = new TestHandler();
         $routes = [
             [
                 'method' => 'GET',

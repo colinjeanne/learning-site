@@ -7,6 +7,8 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteMiddleware
 {
+    const ROUTE_ARGUMENTS = 'route_arguments';
+    
     private $dispatcher;
     
     public function __construct(array $routes)
@@ -36,21 +38,21 @@ class FastRouteMiddleware
         
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
-                $response = $response->withStatus(404);
-                break;
+                return $response->withStatus(404);
             
             case Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $routeInfo[1];
-                $response = $response
+                return $response
                     ->withStatus(405)
                     ->withHeader('Allow', $allowedMethods);
-                break;
             
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $args = $routeInfo[2];
-                $response = $handler($request, $response, $args);
-                break;
+                $request = $request
+                    ->withAttribute(self::ROUTE_ARGUMENTS, $args);
+                
+                return $handler($request, $response, $next);
         }
         
         return $next($request, $response);

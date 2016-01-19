@@ -14,9 +14,52 @@ class Router
     {
         $this->container = $container;
         
+        $this->container->add(Controllers\UserController::class)
+            ->withArgument('doctrine');
+        
+        $this->container->add(Controllers\FamilyController::class)
+            ->withArgument('doctrine');
+        
+        $this->container->add(Controllers\InvitationsController::class)
+            ->withArgument('doctrine');
+        
         $this->container->add(Controllers\RootController::class);
         
         $this->addRoute('GET', '/', 'RootController@getIndex');
+        
+        $this->addRoute('GET', '/me', 'UserController@getMe');
+        
+        $this->addRoute(
+            'GET',
+            '/users/{id:\d+}',
+            'UserController@getUser'
+        );
+        
+        $this->addRoute(
+            'PUT',
+            '/users/{id:\d+}',
+            'UserController@updateUser'
+        );
+        
+        $this->addRoute('GET', '/me/family', 'FamilyController@getMyFamily');
+        
+        $this->addRoute(
+            'GET',
+            '/me/invitations',
+            'InvitationsController@getInvitations'
+        );
+        
+        $this->addRoute(
+            'POST',
+            '/me/invitations',
+            'InvitationsController@inviteFamilyMember'
+        );
+        
+        $this->addRoute(
+            'POST',
+            '/me/invitations/{id:[A-Fa-f\d]{8}-(?:[A-Fa-f\d]{4}-){3}[A-Fa-f\d]{12}}',
+            'InvitationsController@acceptInvitation'
+        );
     }
     
     public function getRoutes()
@@ -34,7 +77,7 @@ class Router
             $handler = function (
                 ServerRequestInterface $request,
                 ResponseInterface $response,
-                array $args
+                callable $next
             ) use (
                 $className,
                 $methodName
@@ -46,26 +89,12 @@ class Router
                     $middleware = $controller->getMiddleware($methodName);
                 }
                 
-                $middleware[] = function (
-                    ServerRequestInterface $request,
-                    ResponseInterface $response,
-                    callable $next
-                ) use (
-                    $controller,
-                    $methodName,
-                    $args
-                ) {
-                    return call_user_func(
-                        [$controller, $methodName],
-                        $request,
-                        $response,
-                        $args
-                    );
-                };
+                $middleware[] = [$controller, $methodName];
                 
                 $relay = new RelayBuilder();
                 $dispatcher = $relay->newInstance($middleware);
-                return $dispatcher($request, $response);
+                $response = $dispatcher($request, $response);
+                return $next($request, $response);
             };
         }
         
