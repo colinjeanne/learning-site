@@ -14,7 +14,7 @@ use Respect\Validation\Validator as v;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\JsonResponse;
 
-require_once 'Common.php';
+require_once __DIR__ . '/Common.php';
 
 function areUsersFamily(User $userA, User $userB)
 {

@@ -1,6 +1,7 @@
 <?php namespace Test\Http\Controllers\Utilities;
 
 use App\App;
+use App\Models\Child;
 use App\Models\Family;
 use App\Models\FamilyInvitation;
 use App\Models\User;
@@ -71,6 +72,17 @@ class AppRunner
         $this->database->flush();
         
         return $invitation;
+    }
+    
+    public function createChild($name, Family $family)
+    {
+        $child = new Child($name);
+        $family->addChild($child);
+        
+        $this->database->persist($child);
+        $this->database->flush();
+        
+        return $child;
     }
     
     public function setAuthenticated(Family $family = null)

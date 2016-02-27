@@ -44,6 +44,18 @@ class Router
         $this->addRoute('GET', '/me/family', 'FamilyController@getMyFamily');
         
         $this->addRoute(
+            'POST',
+            '/me/family/children',
+            'FamilyController@addChild'
+        );
+        
+        $this->addRoute(
+            'PUT',
+            '/me/family/children/{id:\d+}',
+            'FamilyController@updateChild'
+        );
+        
+        $this->addRoute(
             'GET',
             '/me/invitations',
             'InvitationsController@getInvitations'

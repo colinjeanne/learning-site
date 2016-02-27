@@ -1,0 +1,1093 @@
+[
+    {
+        "id": "social-emotional",
+        "name": "Social and Emotional Development",
+        "skills": [
+            {
+                "name": "Self Concept",
+                "goals": [
+                    {
+                        "name": "Expresses preference",
+                        "benchmarks": [
+                            "Responds to name and explores self in mirror.",
+                            "Repeats actions to obtain similar preferred results.",
+                            "Expresses likes and dislikes.",
+                            "When given two to three options, chooses his/her most desired option.",
+                            "Describes preferences of self and others.",
+                            "Negotiates to attain personal preference in a situation",
+                            "Predicts how self and others might feel in a variety of situations and explains why.",
+                            "Demonstrates an understanding that each person is unique and has his/her own thoughts, feelings and preferences."
+                        ]
+                    },
+                    {
+                        "name": "Takes responsibility",
+                        "benchmarks": [
+                            "Responds as caregiver takes care of his/ her needs.",
+                            "Participates in daily routines or familiar activites.",
+                            "Asserts a desire to start or end an activity. Asks for help.",
+                            "Initiates an activity and seeks help to complete it.",
+                            "Independently completes a familiar activity and offers to help others with a similar activity.",
+                            "Takes care of own needs and personal belongings.",
+                            "Shows respect for others' personal space and belongings.",
+                            "Takes care of self or another with considering the needs of the greater group."
+                        ]
+                    },
+                    {
+                        "name": "Identifies and manages feelings",
+                        "benchmarks": [
+                            "Calms with support from caretaker.",
+                            "Shows a range of emotions with facial expressions and gestures. Soothes self.",
+                            "Experiments and role-plays with a range of emotions.",
+                            "Recognizes personal feelings. Controls impulses with reminders.",
+                            "Names some personal feelings and uses strategies to manage behavior.",
+                            "Identifies and explains personal feelings. Describes appropriate responses.",
+                            "Anticipates an emotional response that may result from a given situation.",
+                            "Applies strategies for managing own emotions and behaviors."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Self Direction",
+                "goals": [
+                    {
+                        "name": "Follows rules and routines",
+                        "benchmarks": [
+                            "Reacts to tone of voice and expression.",
+                            "Cooperates during familiar routines and redirection.",
+                            "With prompting, follows rules and routines.",
+                            "Follows rules and routines. Expresses feelings about fairness.",
+                            "Explores personal limits. Identifies when others are or are not following familiar rules and routines.",
+                            "Participares in setting, defining and following rules.",
+                            "Explains why rules and regulations are important and what might happen if they are not followed.",
+                            "Follows explicit and implied rules in various situation with few reminders."
+                        ]
+                    },
+                    {
+                        "name": "Maintains attention",
+                        "benchmarks": [
+                            "Focuses for a short time when others interact with him/her.",
+                            "Attends to what others are looking at or pointing to.",
+                            "Focuses on an engaging activity for a short period of time independently or with an adult.",
+                            "Practices or repeats an activity many times until successful.",
+                            "Sustains focus for at least five minutes, persisting even if there are problems or distractions.",
+                            "Sustains focus for at least ten minutes even if there are distractions.",
+                            "Sustains focus for at least thirty minutes even if there are distractions.",
+                            "Sustains focus for at least forty-five minutes even if there are distractions."
+                        ]
+                    },
+                    {
+                        "name": "Transitions and adapts",
+                        "benchmarks": [
+                            "Reacts to changes in routine.",
+                            "Responds to cues that signal a change in daily routine.",
+                            "Anticipates what comes next within a daily routine. Redirects to a new activity with help from caregivers.",
+                            "Recognizes when the typical routine is not followed and identifies the change.",
+                            "With support, negotiates ways to handle non-routine transitions.",
+                            "Transitions from one activity to the next and helps others through the transition.",
+                            "Describes strategies to adjust and calm one-self in new or stressful situations.",
+                            "Adapts to new situations quickly and with minimal stress."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Social Relationships",
+                "goals": [
+                    {
+                        "name": "Builds positive relationships",
+                        "benchmarks": [
+                            "Connects with caregivers through eye contact and gentle touch.",
+                            "Greets and stays near familiar people.",
+                            "Plays side-by-side with a new or familiar person.",
+                            "Joins a group and participates in group play.",
+                            "Initiates play, conversations and interactions with one or more persons.",
+                            "Begins to describe friendships and other meaningful relationships.",
+                            "Describes qualities of positive relationships and ways to build them.",
+                            "Describes different types of relationships such as those with family, with friends and with teachers."
+                        ]
+                    },
+                    {
+                        "name": "Cooperates",
+                        "benchmarks": [
+                            "Enjoys turn-taking games, such as peeka-boo.",
+                            "Mimics actions of others.",
+                            "Helps or participates in an activity when asked.",
+                            "Plays cooperatively with others and begins to share. Asks adult to help solve social problems.",
+                            "Seeks out opportunities to help others. Tries to solve own social problems.",
+                            "Suggests solutions to group problems or challenges.",
+                            "Fulfills personal roles and responsibilities when working in a group.",
+                            "Works collaboratively and flexibly within a group."
+                        ]
+                    },
+                    {
+                        "name": "Cares for and responds to others",
+                        "benchmarks": [
+                            "Reacts to others' behaviors and expressions.",
+                            "Mimics facial expressions of others.",
+                            "Demonstrates concern for someone who is sad or upset.",
+                            "Explains a reason why someone may be happy or sad.",
+                            "Tries to comfort and assure familiar children or adults.",
+                            "Identifies feelings of others and responds accordingly.",
+                            "Shows empathy.",
+                            "Encourages others to care for, include or help another person."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "physical",
+        "name": "Physical Development",
+        "skills": [
+            {
+                "name": "Gross Motor",
+                "goals": [
+                    {
+                        "name": "Builds strength and balance",
+                        "benchmarks": [
+                            "Sits independently and pulls self into a standing position.",
+                            "Walks and climbs.",
+                            "Runs and balances on a wide beam.",
+                            "Balances and hops on one foot.",
+                            "Hops from one foot to the other. Begins to skip.",
+                            "Skips confidently, gallops and slides side to side.",
+                            "Leaps. Balances on a variety of objects.",
+                            "Uses conditioning methods to strengthen muscles and increase endurance."
+                        ]
+                    },
+                    {
+                        "name": "Coordinates large movements",
+                        "benchmarks": [
+                            "Kicks or grabs from a seated or laying position.",
+                            "Carries, drags, kicks and tosses objects.",
+                            "Throws objects in an intended direction. Catches objects against body.",
+                            "Throws both overhand and underhand. Catches or kicks moving objects.",
+                            "Coordinates multiple movements in simple sequences.",
+                            "Changes direction and speed of movement.",
+                            "Kicks or strikes moving objects with aim and accuracy. Stops at a boundary.",
+                            "Coordinates multiple complex movements in continuous play."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Fine Motor",
+                "goals": [
+                    {
+                        "name": "Controls small movements",
+                        "benchmarks": [
+                            "Reaches for objects in sight.",
+                            "Manipulates objects with purpose, such as feeding self with a spoon.",
+                            "Opens, closes, twists and pulls objects.",
+                            "Snips with scissors. Strings large beads.",
+                            "Follows a straight line when cutting and drawing. Buttons, zips, buckles and laces.",
+                            "Follows an outline with scissors. Ties shows and dresses self.",
+                            "Threads small beads. Stacks small objects.",
+                            "Beads, grasps and stacks objects of all sizes with speed and accuracy."
+                        ]
+                    },
+                    {
+                        "name": "Uses drawing/writing tools",
+                        "benchmarks": [
+                            "Picks up small objects with thumb and pointer finger (pincher grasp).",
+                            "Purposefully grasps and releases objects. Makes random marks with writing tools.",
+                            "Holds drawing/writing tools with whole hand and may use whole arm to make intentional marks.",
+                            "Uses fingers to grasp and manipulate drawing/writing tools with increasing control.",
+                            "Uses a mature tripod grip with drawing/writing tools.",
+                            "Consistently uses mature tripod grip with drawing/writing tools.",
+                            "Legibly prints letters, numbers, and symbols.",
+                            "Uses appropriate spacing between letters and words. Controls the size and placement of letters, numbers or details in drawings."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Health and Safety",
+                "goals": [
+                    {
+                        "name": "Makes healthy food and exercise choices",
+                        "benchmarks": [
+                            "Cries when hungry or tired.",
+                            "Communicates when hungry, thirsty, or tired.",
+                            "Anticipates the need to eat, rest and drink.",
+                            "Identifies food and serves a portion into bowl or plate. Follows a routine of rest and active play.",
+                            "Identifies food groups and sorts food. Chooses between two appropriate food options or rest options.",
+                            "Identifies food that is nutritious. Regulates personal needs for nutrition, activity and rest with few reminders.",
+                            "Explains the importance of nutrition, exercise and rest in maintaining wellness.",
+                            "Explains how feeling well is related to proper nutrition, exercise and rest."
+                        ]
+                    },
+                    {
+                        "name": "Practices good hygiene",
+                        "benchmarks": [
+                            "Receives appropriate healthcare from caregivers.",
+                            "Recognizes the difference between dirty and clean. Points to body parts when prompted.",
+                            "With help, participates in healthy habits and healthcare routines. Names body parts.",
+                            "Describes the function of basic body parts. Regulates toileting and hand-washing needs. Describes how s/he feels and the location of pain.",
+                            "Explains how germs spread and simple strategies for preventing the spread.",
+                            "When feeling sick, describes symptoms. Recognizes the difference between contagious illnesses and noncommunicable diseases or conditions.",
+                            "Describes the functions of basic organs. Maintains personal hygiene with few reminders.",
+                            "Describes how to deal with health conerns of self and others."
+                        ]
+                    },
+                    {
+                        "name": "Demonstrates safe practices",
+                        "benchmarks": [
+                            "Expresses distress when needs are not met.",
+                            "Responds to possible dangers in environment and avoids them when prompted.",
+                            "Follows simple safety rules.",
+                            "Identifies dangerous situations and seeks out help.",
+                            "Describes reasons for safety rules and reminds others to follow them.",
+                            "Applies general safety rules to a variety of everyday situations with little prompting.",
+                            "Identifies emergency situations. Describes how to get help and behave during them.",
+                            "Takes appropriate initiative in dangerous and emergency situations."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "language-literacy",
+        "name": "Language and Literacy",
+        "skills": [
+            {
+                "name": "Listening Comprehension",
+                "goals": [
+                    {
+                        "name": "Comprehends spoken language",
+                        "benchmarks": [
+                            "Turns head toward the person speaking and makes gestures and/or vocalizations in response.",
+                            "When prompted, identifies familiar people or objects.",
+                            "Responds to simple statements and questions.",
+                            "Listens to a story or request and then responds appropriately.",
+                            "Expands on stories and information shared orally.",
+                            "Asks and answers general questions about information or stories shared orally.",
+                            "Asks or answers specific questions about key details from information or stories shared orally.",
+                            "Listens to gather information. Asks questions to clarify or deepen understanding. Recalls key ideas shared orally."
+                        ]
+                    },
+                    {
+                        "name": "Follows verbal directions",
+                        "benchmarks": [
+                            "Responds to conversation in environment and imitates actions.",
+                            "With prompts and gestures, follows a onestep direction.",
+                            "Follows related two-step directions given verbally.",
+                            "Follows unrelated two-step directions given verbally.",
+                            "With prompting, follows multi-step directions given verbally.",
+                            "Follows multi-step directions given verbally.",
+                            "Remembers and follows previous rules or directions shared verbally.",
+                            "Responds to verbal statements that have implied directions or requests."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Communication",
+                "goals": [
+                    {
+                        "name": "Communicates ideas",
+                        "benchmarks": [
+                            "Uses vocal sounds and gestures to communicate.",
+                            "Uses a few words and word-like sounds to communicate.",
+                            "Communicates needs, desires and ideas using simple sentences.",
+                            "Asks simple questions and stays on topic for two to three exchanges.",
+                            "Tells stories and engages in conversations through multiple exchanges.",
+                            "Explains thoughts about familiar people, places and events.",
+                            "Discusses ideas and feelings about a wide range of age-appropriate topics. Stays on topic throughout discussion.",
+                            "Uses expression, tone and pacing to reinforce the meaning of what s/he is communicating. Clarifies meaning during a discussion."
+                        ]
+                    },
+                    {
+                        "name": "Speaks in sentences",
+                        "benchmarks": [
+                            "Duplicates single sounds.",
+                            "Says one- to two-word sentences.",
+                            "Says two- to four-word sentences and repeats short phrases.",
+                            "Speaks in sentences but does not always follow grammatical rules.",
+                            "Speaks in simple complete sentences. Uses question words in speech.",
+                            "Speaks audibly. Makes nouns plural by adding /s/. Uses common prepositions.",
+                            "Uses many types of sentences, including simple and compound. Uses verb tense to express past, present and future.",
+                            "Uses common irregular plural nouns and conjugated verbs."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Vocabulary",
+                "goals": [
+                    {
+                        "name": "Builds vocabulary",
+                        "benchmarks": [
+                            "Makes noises and gestures to communicate.",
+                            "Repeats words heard frequently in environment.",
+                            "Identifies familiar people, places, and objects. Asks what a specific person or object are called.",
+                            "Describes familiar people, places and objects. Seeks additional words for new ways to describe.",
+                            "Includes new and technical words in everyday conversations. Asks what unfamiliar words mean.",
+                            "Uses new or technical words learned in conversations or through reading. Compares words and their meanings.",
+                            "Identifies words whose meaning are similar. Determines the meaning of unknown words from context or from root word.",
+                            "Explains the difference between closely related words. Uses multiple strategies to determine and learn the meaning of unfamiliar words."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Phonological Awareness",
+                "goals": [
+                    {
+                        "name": "Hears small units of sound",
+                        "benchmarks": [
+                            "Babbles and vocalizes using sound, volume and inflection.",
+                            "Imitates sounds and tones.",
+                            "Shows awareness of separate words in spoken language.",
+                            "Identifies words that have a similar beginning sound.",
+                            "Identifies the beginning and ending sounds of words.",
+                            "Counts syllables in spoken words. Isolates and pronounces the sound of each syllable.",
+                            "Identifies and isolates individual sounds heard in one-syllable words.",
+                            "Manipulates, substitutes and deletes sounds in words."
+                        ]
+                    },
+                    {
+                        "name": "Identifies rhyme and alliteration",
+                        "benchmarks": [
+                            "Hears rhyming songs and games.",
+                            "Repeats the last word in familiar rhymes when prompted.",
+                            "Suggests a missing rhyming word within a poem or song.",
+                            "Identifies when two words rhymes or don't rhyme.",
+                            "Suggests a series of rhyming words when given a word.",
+                            "Explains which sound of given word is the rime and which sound is the onset.",
+                            "Recognizes blends, digraphs, letter patterns and simple word families.",
+                            "Manipulates syllables in words, including prefixes and suffixes."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Concepts of Print",
+                "goals": [
+                    {
+                        "name": "Demonstrates print knowledge",
+                        "benchmarks": [
+                            "Looks or points to pictures and opens/ closes books.",
+                            "Recognizes if pictures are right-side up. Turns pages from front to back of book.",
+                            "Identifies the front/back and top/bottom of a book. Indicates where to start reading on each page.",
+                            "Identifies letters, words, spaces and some punctuation. Follows the direction of text.",
+                            "Touches a written word on the page for each spoken word (but not necessarily the correct word). Tracks print from the end of one line to the beginning of the next line.",
+                            "Recognizes common types of text (poem, storybook, fact book). Names author and illustrator. Identifies punctuation.",
+                            "Explains the difference between books that tell stories and those that give information.",
+                            "Describes the overall structure of a story, including the introduction, problem and conclusion."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Letter/Word Recognition",
+                "goals": [
+                    {
+                        "name": "Identifies letters and words",
+                        "benchmarks": [
+                            "Looks for familiar people and objects when given their names.",
+                            "Identifies a familiar object or person when shown a drawing or photo.",
+                            "Recognizes the difference between pictures, letters and numbers in print.",
+                            "Recognizes some common words in print; such as his/her name, mom, dad or stop.",
+                            "Names all upper and lower case letters when presented in random order. When shown a two to three letter word, can find it in print.",
+                            "Reads high frequency sight words.",
+                            "Reads and decodes root words with inflectional endings (e.g. ed, ing, s).",
+                            "Decodes words with common prefixes and suffixes. Uses context or rereads to determine the meaning of unknown words."
+                        ]
+                    },
+                    {
+                        "name": "Makes letter-sound connections",
+                        "benchmarks": [
+                            "Babbles or repeats sounds.",
+                            "Points at words printed on a page and pretends to read aloud.",
+                            "Recognizes the sound of the first letter in his/her name.",
+                            "Identifies six to seven letters and their sounds.",
+                            "Identifies twelve to fifteen letters and their sounds. Recognizes that letters make up words.",
+                            "Identifies all letters and their sounds. Begins to sound out the letters in two- to four-letter words.",
+                            "Recognizes letter patterns, word families, long and show vowel sounds, whole word chunks, digraphs and blends.",
+                            "Applies phonics strategies and word analysis skills to decode unfamiliar words."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Reading Comprehension",
+                "goals": [
+                    {
+                        "name": "Responds to text",
+                        "benchmarks": [
+                            "Interacts by reaching or patting when a book is read.",
+                            "Points to pictures and repeats words from familiar stories.",
+                            "Talks about pictures and ideas in familiar stories.",
+                            "Anticipates what come next in familiar stories. Expresses likes or dislikes within the story.",
+                            "Relates to the characters or events of the story and shares a similar experience or object from own life.",
+                            "With support, compares similarities between two texts.",
+                            "Makes many text-to-text, -self and -world connections. Compares similarities and differences between two texts.",
+                            "Evaluates texts based on content, personal experiences and knowledge of the world. Compares the main points of two texts."
+                        ]
+                    },
+                    {
+                        "name": "Retells, asks and answers questions",
+                        "benchmarks": [
+                            "Holds book and looks intently at each page.",
+                            "Answers “Where is...?” questions by pointing.",
+                            "Answers “What...?” questions about stories and books. Recalls the name of the main character.",
+                            "Participates with others in the retelling of a story by pointing at pictures or role-playing with props.",
+                            "Retells portions of a story. As the story is read, asks and answers simple questions about characters, setting and events.",
+                            "With prompting, answers questions about characters and setting. Retells major events of a story in sequence.",
+                            "Retells stories and includes key details. Asks and answers questions about setting, characters and events. Explains who is speaking at various points throughout the story.",
+                            "Summarizes texts and their messages. Describes the points of view of various characters and how they each respond to challenges or events in the story."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Emergent Writing",
+                "goals": [
+                    {
+                        "name": "Writes name, words and sentences",
+                        "benchmarks": [
+                            "Grips a writing utensil and uses it with help.",
+                            "Makes continuous marks with writing tools.",
+                            "Writes letter-like forms and creates his/her own symbols.",
+                            "Attempts to print or copy familiar symbols and letters, especially those that are in own name.",
+                            "Prints first name. Copies print. Uses inventive spelling.",
+                            "Prints first and last name. Prints upper and lower case letters appropriately.",
+                            "Prints first and last name with proper capitalization. Writes simple sentences. Begins to use traditional spelling.",
+                            "Writes simple and compound sentences. Uses commas. Checks and corrects spelling."
+                        ]
+                    },
+                    {
+                        "name": "Expresses through writing",
+                        "benchmarks": [
+                            "Explores writing materials.",
+                            "Makes marks or handprints on paper.",
+                            "Scribbles or draws marks as a representation of an object or person.",
+                            "Draws lines, cricles or shapes and explains who or what they represent.",
+                            "Uses a combination of drawing, dictating and writing to express and record an event or idea.",
+                            "Uses inventive spelling to write words that are connected to a given topic or opinion. Draws pictures to support writing.",
+                            "Writes a string of simple sentences to tell a story or share information. Provides a concluding statement.",
+                            "Writes ideas or groups information in logical order. Uses descriptive words in writing."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "mathematics-reasoning",
+        "name": "Mathematics and Reasoning",
+        "skills": [
+            {
+                "name": "Number Concepts",
+                "goals": [
+                    {
+                        "name": "Identifies numerals",
+                        "benchmarks": [
+                            "Hears numbers in everyday context.",
+                            "Recognizes the numeral one and sees other numerals around the room.",
+                            "Recognizes numerals to three.",
+                            "Identifies numerals to five.",
+                            "Identifies numerals to ten.",
+                            "Identifies and writes numerals to twenty.",
+                            "Identifies numerals to one hundred and understands place value to the hundreds place.",
+                            "Compares and orders numerals to one thousand, understands place value and identifies if a number is even or odd."
+                        ]
+                    },
+                    {
+                        "name": "Counts to determine quantity",
+                        "benchmarks": [
+                            "Hears rote counting.",
+                            "Verbally counts (not always in correct order).",
+                            "Points to one object at a time while counting (not always in correct order).",
+                            "Counts up to ten objects.",
+                            "Counts up to twenty objects.",
+                            "Counts to one hundred by ones and tens. Counts forward from a given number.",
+                            "Counts in sequence to 120 from a given number. Uses manipulatives to group and count units.",
+                            "Counts by fives, tens, and hundreds to one thousand. Adds and subtracts within twenty."
+                        ]
+                    },
+                    {
+                        "name": "Understands operations",
+                        "benchmarks": [
+                            "Looks for an object that is taken out of sight.",
+                            "Demonstrates an understanding of one, two and more.",
+                            "Creates groups of objects. Adds and removes to group as prompted.",
+                            "Creates and counts groups of up to five objects. Removes objects from the group as prompted and recounts.",
+                            "Solves addition and subtraction problems within ten.",
+                            "Decomposes numbers less than or equal to ten into pairs in more than one way (e.g., 7=3+4, 7=5+2).",
+                            "Demonstrates an understanding of the meaning of the equal sign and determines if a given addition or subtraction equation is true or false.",
+                            "Solves for the unknown in one- and twostep addition or subtraction word problems. Explains problem-solving strategies."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Shapes",
+                "goals": [
+                    {
+                        "name": "Identifies shapes",
+                        "benchmarks": [
+                            "Manipulates objects that are a variety of shapes.",
+                            "Matches two identical shapes.",
+                            "Identifies a few basic shapes.",
+                            "Identifies four to six basic geometric shapes.",
+                            "Describes basic and complex two- and three-dimensional shapes using own words.",
+                            "Describes objects in the environment as two- and three-dimensional shapes.",
+                            "Describes and draws defining features of shapes.",
+                            "Identifies and draws complex shapes."
+                        ]
+                    },
+                    {
+                        "name": "Manipulates parts and wholes",
+                        "benchmarks": [
+                            "Tries to put one object inside of another.",
+                            "Fills container and then dumps out the contents.",
+                            "Puts together two to three pieces to create a whole object.",
+                            "Uses a guide to put together six to twelve pieces to make a whole object.",
+                            "Creates a whole object from many pieces without using a guide.",
+                            "Creates complex shapes by putting together other shapes. Takes apart complex shapes into simpler shape pieces.",
+                            "Builds and analyzes complex shapes constructed from simpler shapes. Separates circles and rectangles into two and four equal parts.",
+                            "Separates a shape into halves, thirds and fourths."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Spatial Awareness",
+                "goals": [
+                    {
+                        "name": "Flips and rotates objects",
+                        "benchmarks": [
+                            "Plays with objects and toys that are a variety of shapes.",
+                            "Purposely turns or spins objects.",
+                            "Recognizes familiar objects that are up-side down and turns them right-side up.",
+                            "Matches two similar objects that are turned or positioned in different ways.",
+                            "Identifies and corrects the orientation of familiar objects and symbols.",
+                            "Identifies two- and three-dimensional shapes and symbols regardless of orientation.",
+                            "Matches two-dimensional shapes to corresponding three-dimensional shapes. Recognizes symmetry.",
+                            "Determines when shapes have been slid, turned or flipped and describes the translation."
+                        ]
+                    },
+                    {
+                        "name": "Determines object location",
+                        "benchmarks": [
+                            "Participates as caregiver raises arms or legs and says up/down.",
+                            "Follows simple positional directions such as on/off, over/under and up/down.",
+                            "When prompted, finds or places objects next to, between, in front of or behind self.",
+                            "When prompted, finds or places objects next to, between, in front of or behind objects not related to self.",
+                            "Explains the location of an object in relation to another object or person.",
+                            "Makes simple maps or models to represent the location of objects.",
+                            "Gives and follows positional instructions to find objects or places.",
+                            "Uses representations, coordinate systems and maps to identify locations of objects or places."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Patterns and Sorting",
+                "goals": [
+                    {
+                        "name": "Identifies and creates patterns",
+                        "benchmarks": [
+                            "Plays predictable activities with caregivers such as patty-cake and peek-a-boo.",
+                            "Attempts to mimic vocal and physical patterns.",
+                            "Copies patterns with two steps, such as redblue, red-blue.",
+                            "Creates and extends two-step patterns.",
+                            "Creates and extends three- and four-step patterns and plays complex memory games.",
+                            "Determines the missing piece of a pattern within a set sequence. Recognizes simple patterns in the environment.",
+                            "Creates or extends increasing or decreasing patterns.",
+                            "Develops and explains his/her own formula for creating a variety of patterns."
+                        ]
+                    },
+                    {
+                        "name": "Matches, sorts and charts",
+                        "benchmarks": [
+                            "Recognizes familiar people and objects.",
+                            "When shown one object, finds the match.",
+                            "Sort objects by one feature, such as size or color.",
+                            "After sorting objects by one feature, sorts again by a different feature.",
+                            "Sorts objects by more than one feature and explains why.",
+                            "Identifies, sorts and classifies objects by at least two features.",
+                            "Answers questions about data or objects sorted in up to three categories.",
+                            "Uses graphs and charts to represent data sorted in up to four categories."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Measurement",
+                "goals": [
+                    {
+                        "name": "Estimates and measures",
+                        "benchmarks": [
+                            "Recognizes when to use whole hand or just two fingers to pick up an object.",
+                            "Explores size and weight of objects in relation to self.",
+                            "Determines which object is bigger (heavier, longer) when given two objects.",
+                            "Uses non-standard measurement tools to estimate approximate size or volume. Verifies estimation with help.",
+                            "Estimates (not always logically) size and volume. Measures and describes findings.",
+                            "Makes logical estimates and uses measurement tools to check estimation.",
+                            "Explains which measurement tool makes best sense for the object being measured. Tells time in hours and half-hours.",
+                            "Tells time. Estimates length in inches, feet, centimeters or meters. Measures an object using a variety of measurement standards."
+                        ]
+                    },
+                    {
+                        "name": "Compares and seriates",
+                        "benchmarks": [
+                            "Picks up and puts down objects. Demonstrates an understanding of more.",
+                            "Places objects in a line. Demonstrates an understanding of more, none and one.",
+                            "Compares and orders two to three objects according to size, length, hue or weight.",
+                            "Orders multiple objects by one feature using process of elimination. Describes order using first, then and last.",
+                            "Arranges and orders multiple objects by size, length, hue or weight. Recalls a sequence of events.",
+                            "Orders multiple objects by two or more features. Orders events in time.",
+                            "Compares the length of two objects by using a third object (the length unit). Orders three objects by length.",
+                            "Compares and explains how much longer one object is than another using standard units of measurement."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Logic",
+                "goals": [
+                    {
+                        "name": "Solves problems",
+                        "benchmarks": [
+                            "Reacts to a problem and seeks a desired outcome.",
+                            "Experiments with cause and effect.",
+                            "Recognizes a problem and asks for help.",
+                            "Tries out many possible solutions to a problem.",
+                            "Uses previous knowledge to determine which solution to try first when solving a problem.",
+                            "Mentally eliminates possible solutions to a problem by thinking through their potential results.",
+                            "Explains the sequence of his/her problemsolving strategy.",
+                            "Solves hypothetical problems by connecting personal experiences to possible solutions."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "social-studies",
+        "name": "Social Studies",
+        "skills": [
+            {
+                "name": "Families and Communities",
+                "goals": [
+                    {
+                        "name": "Identifies community and family roles",
+                        "benchmarks": [
+                            "Responds to primary caregivers.",
+                            "Recognizes the difference between a familiar and unfamiliar person.",
+                            "Identifies familiar people and pets.",
+                            "Describes family members and their relationship to self. Identifies and role-plays familiar community helpers.",
+                            "Identifies roles of self and others and describes the job each may do.",
+                            "Compares roles, rules and responsibilities between different groups.",
+                            "Describes how roles and responsibilities or families and groups change over time.",
+                            "Identifies features in rural, urban and suburban communities and how these features impact roles and responsibilities."
+                        ]
+                    },
+                    {
+                        "name": "Explores cultures and traditions",
+                        "benchmarks": [
+                            "Is exposed to family traditions or cultural events.",
+                            "With help, participates in family traditions and customs.",
+                            "Recognizes familiar symbols or artifacts of family traditions or customs.",
+                            "Describes the routines, familiar stories, traditions, foods and celebrations of own family and community.",
+                            "Explains the meaning and importance of their own traditions and customs. Begins to learn about other cultures.",
+                            "Explains the meaning and importance of traditions and customs of other people.",
+                            "Compares diverse cultures and traditions.",
+                            "Names influential people and events that have impacted familiar cultures and traditions."
+                        ]
+                    },
+                    {
+                        "name": "Respects diversity",
+                        "benchmarks": [
+                            "Sees diverse features of people in books, toys and media.",
+                            "Explores people and their features side by side in a book or a mirror.",
+                            "Identifies physical similarities and differences between self and others.",
+                            "Interacts with peers who look, learn, believe or move differently.",
+                            "Asks questions about how others live, eat, play and believe.",
+                            "Explains how individuals, families and cultures differ.",
+                            "Demonstrates an understanding that some people have different needs or beliefs than self and seeks to support them accordingly.",
+                            "Demonstrates respect for people who look differently and have differing abilities or traditions."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Civics and Economics",
+                "goals": [
+                    {
+                        "name": "Understands citizenship",
+                        "benchmarks": [
+                            "Attends to others in immediate environment.",
+                            "Participates in communal activities.",
+                            "Recognizes and attends to authority figures.",
+                            "Follows familiar rules and helps make group decisions.",
+                            "Applies familiar rules and suggests new rules in a variety of situations.",
+                            "Discusses the purposes of rules, laws and civic leaders. Participates in voting to make decisions.",
+                            "Identifies individual rights. Determines if rules support the common good.",
+                            "Describes different levels of government (local, state, national). Makes democratic decisions."
+                        ]
+                    },
+                    {
+                        "name": "Understands concepts of trade",
+                        "benchmarks": [
+                            "Grasps and releases objects.",
+                            "Expresses a desire for an object or action. Says me, mine.",
+                            "Recognizes ownership of familiar objects.",
+                            "Asks before taking an object that does not belong to self. Offers a toy or object to another person.",
+                            "Explores the use of trade to receive objects or services.",
+                            "Exchanges money, goods or services for other goods or services.",
+                            "Describes ways one might use money, goods or services.",
+                            "Explains how and why people work together in trade to get what they need and want."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Geography",
+                "goals": [
+                    {
+                        "name": "Identifies types of places",
+                        "benchmarks": [
+                            "Responds to changes in the immediate environment.",
+                            "Recognizes familiar faces.",
+                            "Identifies a variety of familiar places, such as the store, car, home or Grandma’s.",
+                            "Identifies different types of water bodies, streets, buildings and landmarks in own community.",
+                            "Explains the purpose for different types of structures, such as bridges and buildings. Asks questions about landmarks.",
+                            "Compares the geographic features of own community to another community.",
+                            "Identifies and describes various types of landforms and natural resources.",
+                            "Explains how the physical features and characteristics of an environment affect how people live."
+                        ]
+                    },
+                    {
+                        "name": "Uses maps",
+                        "benchmarks": [
+                            "Navigates within a familiar environment.",
+                            "Finds ways to move around obstacles in a familiar environment.",
+                            "Follows a path.",
+                            "Recognizes symbols and landmarks.",
+                            "Identifies what is represented on a map. Draws pictures of current location.",
+                            "Recreates a map of something s/he cannot immediately see.",
+                            "Locates familiar places on maps. Uses cardinal directions to follow and give directions.",
+                            "Uses a variety of maps to gather information."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "History",
+                "goals": [
+                    {
+                        "name": "Describes past events",
+                        "benchmarks": [
+                            "Focuses on interactions with others for a short time.",
+                            "Observes events and begins to participate.",
+                            "Describes events as they happen. Uses words such as first, then.",
+                            "Recalls information and events from the past.",
+                            "Uses language of time to describe familiar sequences of events.",
+                            "Retells historical, fictional or past events or stories.",
+                            "Compares and contrasts current and historical conditions of familiar environments.",
+                            "Describes relationships between past events and current conditions. Explains why it is important to understand historical events."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "science",
+        "name": "Science",
+        "skills": [
+            {
+                "name": "Scientific Reasoning",
+                "goals": [
+                    {
+                        "name": "Inquires and predicts",
+                        "benchmarks": [
+                            "Looks for a person or toy that has moved out of sight.",
+                            "Asks one- to two-word questions.",
+                            "Identifies personal interests and seeks more information.",
+                            "When given a question, guesses a possible answer or outcome.",
+                            "Asks questions or shows curiosity about scientific phenomenon. Predicts a few outcomes.",
+                            "Predicts multiple outcomes to a question or situation and explains personal reasoning.",
+                            "Inquires about a scientific phenomenon and explains which prediction seems most probable.",
+                            "Asks relevant questions and makes logical hypotheses about scientific phenomena based on prior knowledge."
+                        ]
+                    },
+                    {
+                        "name": "Observes and experiments",
+                        "benchmarks": [
+                            "Explores cause and effect.",
+                            "Uses senses to explore environment.",
+                            "Investigates an object or group of objects in multiple ways.",
+                            "Observes and describes actions or changes that occur to familiar objects and people.",
+                            "Explores scientific phenomenon and records observations by drawing.",
+                            "Gathers information or experiments to prove/disprove a hypothesis.",
+                            "Experiments or gathers information. Records findings in tables, charts or diagrams.",
+                            "Conducts an experiment multiple times. Records observations and makes personal notes."
+                        ]
+                    },
+                    {
+                        "name": "Evaluates and infers",
+                        "benchmarks": [
+                            "Reacts to changes.",
+                            "Recognizes objects, actions, sounds or people associated with a common use or routine.",
+                            "Shares discoveries with others.",
+                            "Uses past knowledge to explain observed changes.",
+                            "Describes and compares observations of scientific phenomenon.",
+                            "Uses information and observations to verify a prediction.",
+                            "Uses prior knowledge and gathered information to make simple inferences.",
+                            "Evaluates gathered information to explain a scientific phenomenon."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Life Science",
+                "goals": [
+                    {
+                        "name": "Identifies basic needs",
+                        "benchmarks": [
+                            "Responds when physical needs are not met.",
+                            "Participates in taking care of some personal needs, such as feeding self.",
+                            "Describes basic personal needs.",
+                            "Meets most personal needs independently. Demonstrates an understanding that all people have needs.",
+                            "Recognizes that all living things have similar basic needs. Distinguishes between needs and wants.",
+                            "Describes how living things attain what they need to survive.",
+                            "Describes how an organism’s features and surroundings help it survive.",
+                            "Describes threats and challenges that living things must overcome to survive."
+                        ]
+                    },
+                    {
+                        "name": "Classifies organisms",
+                        "benchmarks": [
+                            "Recognizes self as being separate from others.",
+                            "Identifies and names familiar people, characters and animals.",
+                            "Groups living things by common characteristics.",
+                            "Identifies if an object can grow, eat or move.",
+                            "Sorts organisms as living or non-living and explains why.",
+                            "Describes the features of living things and groups them by similar features.",
+                            "Explains the purpose of specific features for various groups of organisms.",
+                            "Explains the relationships between a variety of species and how they fit within a larger group of animals or plants."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Physical Science",
+                "goals": [
+                    {
+                        "name": "Identifies properties of matter",
+                        "benchmarks": [
+                            "Uses senses to explore objects in immediate environment.",
+                            "Reacts to changes in texture, smell, sound or sight.",
+                            "With support, sorts objects by physical characteristics.",
+                            "Describes basic physical properties of objects and materials in immediate environment.",
+                            "Manipulates matter and observes any physical changes that may occur.",
+                            "Classifies and sorts materials by a variety of physical properties.",
+                            "Identifies materials that are solid, liquid and gaseous. Identifies matter in its various states.",
+                            "Describes characteristics of solids, liquids and gases. Explains how matter changes states."
+                        ]
+                    },
+                    {
+                        "name": "Explores forces and motions",
+                        "benchmarks": [
+                            "Kicks feet or shakes arms to make other objects move.",
+                            "Uses body to push or pull toys.",
+                            "Explores motion by moving, rolling, blowing on or dropping a toy.",
+                            "Explains how common vehicles, animals and people move. Sorts objects by type of movement.",
+                            "Experiments with and explains invisible forces (ramps, magnets, etc.).",
+                            "Experiments and compares the movement of various objects on a variety of surfaces.",
+                            "Recognizes that gravity makes unsupported objects fall. Identifies objects that are attracted to magnets.",
+                            "Recognizes that materials move differently on different surfaces. Explains how force is used to change the direction of moving objects."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Earth Science",
+                "goals": [
+                    {
+                        "name": "Identifies weather and climates",
+                        "benchmarks": [
+                            "Reacts to weather changes in immediate environment.",
+                            "Understands hot and cold. Points at clouds and explores the feel of rain and wind.",
+                            "Notices changes in temperature or weather in immediate environment.",
+                            "Identifies the climate and weather in the immediate environment.",
+                            "Explains how weather and climate changes may affect personal life. Identifies the current season.",
+                            "Explains that different places have different kinds of weather and climates.",
+                            "Explains the basic properties of the Sun, Moon and Earth. Describes the role of the sun on weather and day/night patterns.",
+                            "Describes how the Sun and movements of the Earth affect climate."
+                        ]
+                    },
+                    {
+                        "name": "Explores ecosystems",
+                        "benchmarks": [
+                            "Explores immediate environment using senses.",
+                            "Plays with rocks, sand, dirt or water. Reacts to animals or insects in immediate environment.",
+                            "Identifies familiar animals, plants or rocks in immediate environment.",
+                            "Describes what familiar animals eat and where they live.",
+                            "Describes a habitat and its characteristics.",
+                            "Describes how living things interact within a particular environment. Describes personal role in taking care of the environment.",
+                            "Explains why organisms within a familiar ecosystem are interdependent. Explains how people benefit from or endanger their surrounding ecosystem.",
+                            "Explores a variety of ecosystems and identifies their organisms and characteristics. Defines strategies for preserving a variety of ecosystems."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Technology",
+                "goals": [
+                    {
+                        "name": "Explores technology",
+                        "benchmarks": [
+                            "Explores simple tools such as toys and spoons.",
+                            "Begins to use simple tools purposefully, such as using a spoon to feed self.",
+                            "Explores movable parts on toys and tools. Uses on and off switches.",
+                            "Explores simple machines and interacts with simple electronic and screen toys.",
+                            "Experiments with simple technology to solve problems or accomplish tasks.",
+                            "Uses familiar tools and technology to produce a desired result or solve a specific problem.",
+                            "Experiments with familiar and unfamiliar tools and technology to achieve a variety of results.",
+                            "Identifies which tools can best help save time, solve a problem or increase enjoyment."
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "creative",
+        "name": "Creative Development",
+        "skills": [
+            {
+                "name": "Music",
+                "goals": [
+                    {
+                        "name": "Develops rhythm and tone",
+                        "benchmarks": [
+                            "Responds to sounds.",
+                            "Responds to changes in sound, rhythm, volume or melody.",
+                            "Claps to beat (not always consistently). Recognizes the difference between a singing and speaking voice.",
+                            "Claps along to simple rhythm patterns. Controls voice to mimic the melodic direction.",
+                            "Repeats simple rhythm patterns. Hears the change of musical phrases in a song. Sings along to familiar songs.",
+                            "Creates simple rhythm patterns. Controls pitch when singing a familiar song.",
+                            "Maintains a steady beat. Recognizes strong/ weak beats. Begins to read rhythm notation. Matches vocal pitch in limited range.",
+                            "Maintains rhythm in various meter groupings, Participates in call and response and two part rounds."
+                        ]
+                    },
+                    {
+                        "name": "Expresses through music",
+                        "benchmarks": [
+                            "Makes sounds to communicate feelings.",
+                            "Repeats words in familiar songs and attempts to sing.",
+                            "Expresses likes and dislikes of familiar songs. Explores sounds by shaking, pounding and tapping various instruments and objects.",
+                            "Uses voice, common objects or instruments to create music. Identifies self as a musician.",
+                            "Uses voice or instruments to express feelings or to mimic sound effects.",
+                            "Communicates ideas by creating rhythm and/or melody.",
+                            "Interprets and compares many types of music.",
+                            "Experiments and performs self-written music or rhythmic patterns."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Dance and Movement",
+                "goals": [
+                    {
+                        "name": "Develops dance and movement techniques",
+                        "benchmarks": [
+                            "Moves body in a variety of ways.",
+                            "Moves body purposely. Sways or bounces to music.",
+                            "Follows the movements of others. Explores personal space and direction.",
+                            "Describes and demonstrates multiple ways to move body parts. Moves to the beat of a song.",
+                            "Follows a leader to perform a simple movement pattern.",
+                            "Recalls a simple movement pattern and performs it individually or in a group.",
+                            "Recalls and dances a sequence of 2-3 movement patterns. Identifies the beginning, middle and end of a dance.",
+                            "Creates simple movement sequences."
+                        ]
+                    },
+                    {
+                        "name": "Expresses through dance and movement",
+                        "benchmarks": [
+                            "Uses body language to express feelings.",
+                            "Uses purposeful gestures and body language to communicate.",
+                            "Moves in own way to music and rhythm.",
+                            "Demonstrates different levels of energy in dance (gentle movements or big, exaggerated movements).",
+                            "Demonstrates the difference between spontaneous and planned movement. Creates movements based on own ideas.",
+                            "Expresses ideas, feelings and stories through creative movement.",
+                            "Coordinates movements of self and others to create a cohesive dance or idea.",
+                            "Describes how dances and movements express certain ideas or feelings."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Visual Arts",
+                "goals": [
+                    {
+                        "name": "Develops artistic techniques",
+                        "benchmarks": [
+                            "Explores materials using gross motor movements and senses.",
+                            "Uses hands and feet to explore a variety of media.",
+                            "Explores a variety of artistic tools and media.",
+                            "Chooses an object or art tool to use with a given medium for a desired effect.",
+                            "Uses artistic tools and media to create intentional designs or images.",
+                            "Demonstrates a variety of techniques using a given tool or medium.",
+                            "Uses various tools and techniques to achieve desired artistic results.",
+                            "Compares artistic techniques and creations of many artists."
+                        ]
+                    },
+                    {
+                        "name": "Expresses through visual arts",
+                        "benchmarks": [
+                            "Expresses emotions while exploring materials.",
+                            "Scribbles, colors or paints intentionally on paper.",
+                            "Uses materials to create shapes and symbols.",
+                            "Makes choices throughout the artistic process.",
+                            "Plans and seeks out materials to make a creation.",
+                            "Creates arts to represent an idea or object. Explains how it was made.",
+                            "Creates art to express ideas, thoughts and feelings.",
+                            "Creates art and explains why and how s/ he chose specific materials and techniques."
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Drama",
+                "goals": [
+                    {
+                        "name": "Participates in dramatic play",
+                        "benchmarks": [
+                            "Imitates simple movements and facial expressions.",
+                            "Mimics observed behaviors and words.",
+                            "Uses words, actions and props to pretend.",
+                            "Plays a role in group dramatic play.",
+                            "Assigns roles and plays out unscripted scenes in dramatic play.",
+                            "With cues, performs a simple pre-planned drama.",
+                            "Describes how a character may feel in a given situation, then integrates that emotion into performance.",
+                            "Rehearses, memorizes and performs a short play."
+                        ]
+                    },
+                    {
+                        "name": "Uses and creates props",
+                        "benchmarks": [
+                            "Responds to props or puppets.",
+                            "Mimics the use of familiar objects.",
+                            "Uses realistic toys as replacements for real objects. Distinguishes between real and pretend.",
+                            "Uses any object as a replacement for a realistic prop or real object.",
+                            "Uses a combination of real and imaginary props or characters to play out a scene.",
+                            "Creates a setting, characters and events to tell a story.",
+                            "Plans a story and seeks out props to enhance a role or highlight details.",
+                            "Plans a story and creates costumes, settings or props to create a mood or environment."
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

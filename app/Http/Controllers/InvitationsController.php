@@ -15,7 +15,7 @@ use Respect\Validation\Validator as v;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\JsonResponse;
 
-require_once 'Common.php';
+require_once __DIR__ . '/Common.php';
 
 const READ_INVITATION_KEY = 'read_invitation_key';
 
@@ -144,7 +144,6 @@ class InvitationsController
         switch ($methodName) {
             case 'getInvitations':
                 $middleware[] = new AcceptMiddleware(['application/json']);
-                ;
                 break;
             
             case 'inviteFamilyMember':
@@ -201,7 +200,7 @@ class InvitationsController
         $user = $request->getAttribute(READ_USER_KEY);
         
         if (!$family->hasMember($user)) {
-            if ($family->isFull()) {
+            if ($family->hasMaxMembers()) {
                 return new JsonResponse(
                     ['Family has too many members'],
                     400,
@@ -254,7 +253,7 @@ class InvitationsController
         $family = $invitation->getFamily();
         
         if (!$family->hasMember($currentUser)) {
-            if ($family->isFull()) {
+            if ($family->hasMaxMembers()) {
                 return new JsonResponse(
                     ['Family has too many members'],
                     400,

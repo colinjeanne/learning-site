@@ -166,7 +166,8 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'members' => [
                 'http://example.com/users/1'
-            ]
+            ],
+            'children' => []
         ];
         
         $this->appRunner->setRequestMethod('GET');
@@ -333,13 +334,13 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(415, $response->getStatusCode());
     }
     
-    public function testInviteFamilyMemberFamilyIsFull()
+    public function testInviteFamilyMemberFamilyMaxMembers()
     {
         $this->setPathToMyInvitations();
         $family = $this->appRunner->createFamily();
         $currentUser = $this->appRunner->setAuthenticated($family);
         
-        while (!$family->isFull()) {
+        while (!$family->hasMaxMembers()) {
             $this->appRunner->createUser('familyMember', $family);
         }
         
@@ -441,14 +442,14 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
     
-    public function testAcceptInvitationFamilyIsFull()
+    public function testAcceptInvitationFamilyMaxMembers()
     {
         $currentUser = $this->appRunner->setAuthenticated();
         
         $family = $this->appRunner->createFamily();
         $createdBy = $this->appRunner->createUser('createdBy', $family);
         
-        while (!$family->isFull()) {
+        while (!$family->hasMaxMembers()) {
             $this->appRunner->createUser('familyMember', $family);
         }
         
@@ -517,7 +518,8 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
             'members' => [
                 'http://example.com/users/2',
                 'http://example.com/users/1'
-            ]
+            ],
+            'children' => []
         ];
         
         $this->assertEquals($expected, $actual);
