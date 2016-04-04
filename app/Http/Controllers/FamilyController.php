@@ -93,13 +93,13 @@ function familyToJson(ServerRequestInterface $request, Family $family)
     return [
         'members' => array_map(
             function (User $user) use ($request) {
-                return getUserUri($request, $user);
+                return userToJson($request, $user);
             },
             $family->getMembers()->getValues()
         ),
         'children' => array_map(
             function (Child $child) use ($request) {
-                return childToJson($child);
+                return childToJson($request, $child);
             },
             $family->getChildren()->getValues()
         )

@@ -1,59 +1,97 @@
 header {
+   align-items: center;
+   background-color: #8c6239;
+   color: white;
    display: flex;
-   font-size: 130%;
    font-family: sans-serif;
+   font-size: 130%;
    justify-content: space-between;
    margin-bottom: 0.5em;
+   padding: 0.5em;
    text-transform: capitalize;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   font-family: sans-serif;
+}
+
+header h1 {
+   font-size: inherit;
+   font-weight: normal;
+   margin: 0;
+   padding: 0.5em 0;
+}
+
+header span {
+   display: flex;
 }
 
 body {
    margin: 0;
-   padding: 1em;
-}
-
-body > header {
-   margin-bottom: 0.5em;
+   padding: 0;
 }
 
 #mainNavigation {
-   padding: 0;
+   align-self: center;
    font-family: sans-serif;
-   display: block;
-   border-bottom: solid thin black;
+   padding: 0;
 }
 
 #mainNavigation ol {
+   display: flex;
+   justify-content: flex-end;
+   list-style-type: none;
    margin: 0;
    padding: 0;
 }
 
-#mainNavigation li {
-   margin: 0.5em 0.25em 0.5em 0;
-   display: inline-block;
-}
-
 #mainNavigation label {
-   padding: 0.5em 0.5em;
-   color: white;
-   background-color: #8c6239;
    cursor: pointer;
+   padding: 0.5em 0.5em;
 }
 
-#mainNavigation label:hover {
-   color: white;
-   background-color: #005826;
+#mainNavigation label:hover,
+#mainNavigation input:checked ~ label {
+   border-bottom: 4px solid #005826;
 }
 
 #mainNavigation input {
    display: none;
 }
 
-#mainNavigation input:checked ~ label {
-   color: white;
+#userTile {
+   margin-left: 1em;
+}
+
+#userContainer {
+   background-color: transparent;
+   border: none;
+   color: inherit;
+   cursor: pointer;
+   font: inherit;
+   padding: 0.5em 0.5em;
+}
+
+#userContainer:hover,
+.userTileToggled {
    background-color: #005826;
 }
 
 .signedIn {
    display: none;
+}
+
+#root > section {
+   margin: 0 1em;
+}
+
+.childrenSection ul,
+.familyMemberSection ul,
+.invitationSection ul {
+   list-style-type: none;
+}
+
+.childrenSection input,
+.familyMemberSection input {
+   margin-left: 0.5em;
 }

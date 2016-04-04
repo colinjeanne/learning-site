@@ -47,7 +47,14 @@ class FamilyControllerTest extends \PHPUnit_Framework_TestCase
         
         $expected = [
             'members' => [
-                'http://example.com/users/1'
+                [
+                    'name' => 'currentUser',
+                    'links' => [
+                        'self' => 'http://example.com/users/1',
+                        'family' => 'http://example.com/me/family',
+                        'invitations' => 'http://example.com/me/invitations'
+                    ]
+                ]
             ],
             'children' => []
         ];
@@ -69,7 +76,14 @@ class FamilyControllerTest extends \PHPUnit_Framework_TestCase
         
         $expected = [
             'members' => [
-                'http://example.com/users/1'
+                [
+                    'name' => 'currentUser',
+                    'links' => [
+                        'self' => 'http://example.com/users/1',
+                        'family' => 'http://example.com/me/family',
+                        'invitations' => 'http://example.com/me/invitations'
+                    ]
+                ]
             ],
             'children' => []
         ];

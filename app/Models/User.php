@@ -39,7 +39,7 @@ class User
     
     /**
      * @ManyToOne(targetEntity="App\Models\Family", inversedBy="users")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @JoinColumn(name="family_id", referencedColumnName="id")
      * @var App\Models\Family
      */
     private $family;
@@ -106,7 +106,7 @@ class User
     
     public function setFamily(Family $family)
     {
-        if ($this->family) {
+        if ($this->family && !$this->family->isEmpty()) {
             throw new \InvalidArgumentException('Already part of a family');
         }
         

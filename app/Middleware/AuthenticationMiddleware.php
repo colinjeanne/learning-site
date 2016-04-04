@@ -48,7 +48,13 @@ class AuthenticationMiddleware
         if ((count($authInfo) === 2) && ($authInfo[0] === 'Bearer')) {
             $jwt = $authInfo[1];
 
-            $claims = $this->jwtAuthorizer->getClaims($jwt);
+            try {
+                $claims = $this->jwtAuthorizer->getClaims($jwt);
+            } catch (\Exception $e) {
+                $this->log->info('Invalid token');
+                return $next($request, $response);
+            }
+            
             if (isset($claims['iss']) && isset($claims['sub'])) {
                 $this->log->info('Claims found');
                 $claim = $this->db->getRepository(Claim::class)

@@ -24,7 +24,7 @@ class Child
     
     /**
      * @ManyToOne(targetEntity="App\Models\Family", inversedBy="children")
-     * @JoinColumn(name="child_id", referencedColumnName="id")
+     * @JoinColumn(name="family_id", referencedColumnName="id")
      * @var App\Models\Family
      */
     private $family;

@@ -1,8 +1,10 @@
 import AppContainer from './components/app/container';
+import { getMe, signInUser, updateMe } from './actions/user';
+import { getMyFamily } from './actions/family';
+import { getMyInvitations } from './actions/invite';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { signInUser } from './actions/user';
 import store from './stores/store';
 
 ReactDOM.render(
@@ -14,6 +16,17 @@ ReactDOM.render(
 
 window.signinSucceeded = user => {
     store.dispatch(signInUser(user));
+    store.dispatch(
+        [
+            getMe(),
+            getMyInvitations()
+        ])[0].
+        then(action =>
+            store.dispatch(
+                updateMe(
+                    action.payload.links.self,
+                    user.getBasicProfile().getName())));
+    store.dispatch(getMyFamily());
 };
 
 window.signinFailed = error => store.dispatch(signInUser(error));

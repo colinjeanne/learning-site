@@ -66,18 +66,18 @@ class Family
     
     public function getChildren()
     {
-        return $this->children;
+        return $this->children ? $this->children : new ArrayCollection();
     }
     
     public function hasMaxChildren()
     {
-        return $this->children->count() == self::MAX_NUMBER_OF_CHILDREN;
+        return $this->getChildren()->count() == self::MAX_NUMBER_OF_CHILDREN;
     }
     
     public function hasChild(Child $child)
     {
         $comparer = createChildComparison($child);
-        return $this->children->exists($comparer);
+        return $this->getChildren()->exists($comparer);
     }
 
     public function addChild(Child $child)
@@ -87,25 +87,25 @@ class Family
                 throw new \InvalidArgumentException('Too many children');
             }
             
-            $this->children[] = $child;
+            $this->getChildren()[] = $child;
             $child->setFamily($this);
         }
     }
     
     public function getMembers()
     {
-        return $this->members;
+        return $this->members ? $this->members : new ArrayCollection();
     }
     
     public function hasMaxMembers()
     {
-        return $this->members->count() == self::MAX_NUMBER_OF_MEMBERS;
+        return $this->getMembers()->count() == self::MAX_NUMBER_OF_MEMBERS;
     }
     
     public function hasMember(User $user)
     {
         $comparer = createUserComparison($user);
-        return $this->members->exists($comparer);
+        return $this->getMembers()->exists($comparer);
     }
 
     public function addMember(User $user)
@@ -115,9 +115,17 @@ class Family
                 throw new \InvalidArgumentException('Too many members');
             }
             
-            $this->members[] = $user;
+            $this->getMembers()[] = $user;
             $user->setFamily($this);
         }
+    }
+    
+    public function isEmpty()
+    {
+        $memberCount = $this->getMembers()->count();
+        $childrenCount = $this->getChildren()->count();
+        
+        return ($memberCount === 1) && ($childrenCount === 0);
     }
     
     public function getInvitations()

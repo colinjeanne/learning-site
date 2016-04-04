@@ -216,7 +216,7 @@ class InvitationsController
                 );
             }
             
-            if ($user->getFamily()) {
+            if ($user->getFamily() && !$user->getFamily()->isEmpty()) {
                 return new JsonResponse(
                     ['User is already in a family'],
                     400,
@@ -249,6 +249,7 @@ class InvitationsController
             AuthenticationMiddleware::CURRENT_USER_KEY
         );
         
+        $originalFamily = $currentUser->getFamily();
         $invitation = $request->getAttribute(READ_INVITATION_KEY);
         $family = $invitation->getFamily();
         
@@ -266,6 +267,10 @@ class InvitationsController
         
         foreach ($currentUser->getInvitations() as $oldInvitation) {
             $this->db->remove($oldInvitation);
+        }
+        
+        if ($originalFamily) {
+            $this->db->remove($originalFamily);
         }
         
         $this->db->flush();

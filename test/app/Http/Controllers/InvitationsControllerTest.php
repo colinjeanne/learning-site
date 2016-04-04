@@ -129,13 +129,34 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(400, $response->getStatusCode());
     }
     
-    public function testInviteFamilyMemberUserAlreadyInFamily()
+    public function testInviteFamilyMemberUserInEmptyFamily()
     {
         $this->setPathToMyInvitations();
         $currentUser = $this->appRunner->setAuthenticated();
         
         $family = $this->appRunner->createFamily();
         $user = $this->appRunner->createUser('user', $family);
+        
+        $this->appRunner->setRequestMethod('POST');
+        $this->appRunner->setBody(
+            'http://example.com/users/2',
+            'application/json'
+        );
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(204, $response->getStatusCode());
+        
+        $this->assertEquals(1, $user->getInvitations()->count());
+    }
+    
+    public function testInviteFamilyMemberUserAlreadyNonemptyInFamily()
+    {
+        $this->setPathToMyInvitations();
+        $currentUser = $this->appRunner->setAuthenticated();
+        
+        $family = $this->appRunner->createFamily();
+        $user = $this->appRunner->createUser('user', $family);
+        $otherUser = $this->appRunner->createUser('otherUser', $family);
         
         $this->appRunner->setRequestMethod('POST');
         $this->appRunner->setBody(
@@ -516,8 +537,20 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         
         $expected = [
             'members' => [
-                'http://example.com/users/2',
-                'http://example.com/users/1'
+                [
+                    'name' => 'user',
+                    'links' => [
+                        'self' => 'http://example.com/users/2'
+                    ]
+                ],
+                [
+                    'name' => 'currentUser',
+                    'links' => [
+                        'self' => 'http://example.com/users/1',
+                        'family' => 'http://example.com/me/family',
+                        'invitations' => 'http://example.com/me/invitations'
+                    ]
+                ]
             ],
             'children' => []
         ];

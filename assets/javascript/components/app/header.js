@@ -1,20 +1,37 @@
+import Constants from '../../constants/constants';
 import React from 'react';
+import TabbedNavigation from './tabbedNavigation';
+import UserButton from './userButton';
 
 const header = props => {
-    const className = props.displayName ? 'g-signin2 signedIn' : 'g-signin2';
+    const isSignedIn = !!props.displayName;
+    const navigationElement = (
+        <TabbedNavigation
+            id="mainNavigation"
+            onSelect={props.onTabSelected}
+            selectedPage={props.selectedPage}
+            tabs={Constants.navigationPages} />
+    );
+    const navigation = isSignedIn ? navigationElement : undefined;
+    
     return (
         <header>
-            Isaac's Learning Site
-            <span id="userContainer">{props.displayName}</span>
-            <div
-                className={className}
-                data-onfailure="signinFailed"
-                data-onsuccess="signinSucceeded"></div>
+            <h1>Isaac's Learning Site</h1>
+            <span>
+                {navigation}
+                <UserButton
+                    displayName={props.displayName}
+                    onClick={props.onUserMenuClick}
+                    toggled={props.selectedPage === Constants.pages.PROFILE} />
+            </span>
         </header>
     )};
 
 header.propTypes = {
-    displayName: React.PropTypes.string
+    displayName: React.PropTypes.string,
+    onTabSelected: React.PropTypes.func.isRequired,
+    onUserMenuClick: React.PropTypes.func.isRequired,
+    selectedPage: React.PropTypes.string
 };
 
 export default header;

@@ -1,52 +1,39 @@
 import Constants from '../../constants/constants';
 import Header from './header.js';
+import Profile from './../profile/container';
 import React from 'react';
-import TabbedNavigation from './tabbedNavigation';
+
+const pageToContent = {
+    [Constants.pages.ACTIVITIES]: () => {},
+    
+    [Constants.pages.ADD_ACTIVITY]: () => {},
+    
+    [Constants.pages.CHILD_PROGRESS]: () => {},
+    
+    [Constants.pages.PROFILE]: props => (<Profile />),
+    
+    [Constants.pages.UNAUTHORIZED]: () => {}
+};
 
 const app = props => {
-    let content;
-    if (props.displayName) {
-        let page;
-        switch (props.page) {
-            case Constants.pages.ACTIVITIES:
-                break;
-            
-            case Constants.pages.CHILD_PROGRESS:
-                break;
-            
-            case Constants.pages.ADD_ACTIVITY:
-                break;
-            
-            case Constants.pages.PROFILE:
-                break;
-        }
-        
-        content = (
-            <div>
-                <Header displayName={props.displayName} />
-                <TabbedNavigation
-                    id="mainNavigation"
-                    onSelect={props.onTabSelected}
-                    selectedPage={props.page}
-                    tabs={Constants.pages} />
-                {page}
-            </div>
-        );
-    } else {
-        content = (
-            <div>
-                <Header displayName={props.displayName} />
-            </div>
-        );
-    }
-    
-    return content;
+    const page = pageToContent[props.page](props);
+    return (
+        <div id="root">
+            <Header
+                displayName={props.displayName}
+                onTabSelected={props.onTabSelected}
+                onUserMenuClick={props.onUserMenuClick}
+                selectedPage={props.page} />
+            {page}
+        </div>
+    );
 };
 
 app.propTypes = {
     displayName: React.PropTypes.string,
     onTabSelected: React.PropTypes.func.isRequired,
-    page: React.PropTypes.string.isRequired,
+    onUserMenuClick: React.PropTypes.func.isRequired,
+    page: React.PropTypes.string,
 };
 
 export default app;

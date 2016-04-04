@@ -136,29 +136,6 @@ function authorizeCurrentUserToUpdateUser(
     return $next($request, $response);
 }
 
-function userToJson(ServerRequestInterface $request, User $user)
-{
-    $json = [
-        'name' => $user->getName(),
-        'links' => [
-            'self' => getUserUri($request, $user)
-        ]
-    ];
-    
-    $currentUser = $request->getAttribute(
-        AuthenticationMiddleware::CURRENT_USER_KEY
-    );
-    
-    if ($user->getId() === $currentUser->getId()) {
-        $json['links']['family'] =
-            (string)$request->getUri()->withPath('/me/family');
-        $json['links']['invitations'] =
-            (string)$request->getUri()->withPath('/me/invitations');
-    }
-    
-    return $json;
-}
-
 function updateUserFromJson(User $user, array $json)
 {
     $user->setName($json['name']);

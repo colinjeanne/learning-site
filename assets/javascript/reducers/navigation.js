@@ -2,7 +2,7 @@ import Constants from '../constants/constants';
 import { handleActions } from 'redux-actions';
 
 const initialState = {
-    page: Constants.pages.ACTIVITIES
+    page: Constants.pages.UNAUTHORIZED
 };
 
 const reducer = handleActions({
@@ -10,7 +10,13 @@ const reducer = handleActions({
             Object.assign(
                 {},
                 state,
-                { page: action.payload })
+                { page: action.payload }),
+        
+        [Constants.USER_SIGNIN]: state =>
+            Object.assign(
+                {},
+                state,
+                { page: Constants.pages.ACTIVITIES })
     },
     initialState);
 

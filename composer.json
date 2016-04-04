@@ -4,7 +4,7 @@
     "type": "project",
     "require": {
         "doctrine/orm": "^2.5",
-        "google/apiclient": "^2.0@dev",
+        "google/apiclient": "^2.0@RC",
         "league/container": "^2.0",
         "monolog/monolog": "^1.17",
         "nikic/fast-route": "^0.6.0",

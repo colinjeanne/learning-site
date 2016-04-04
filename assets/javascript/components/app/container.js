@@ -5,14 +5,15 @@ import { showPage } from '../../actions/navigation';
 
 const mapStateToProps = state => {
     return {
-        displayName: state.user.name,
+        displayName: state.user.me.name,
         page: state.navigation.page
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        onTabSelected: showPage
+        onTabSelected: showPage,
+        onUserMenuClick: showPage
     },
     dispatch);
 };

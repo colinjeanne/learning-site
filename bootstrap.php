@@ -7,7 +7,7 @@ use Dotenv\Dotenv;
 use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 
-$dotenv = new Dotenv(__DIR__ . '/..');
+$dotenv = new Dotenv(__DIR__);
 $dotenv->load();
 
 $app = new App();

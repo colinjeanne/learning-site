@@ -16,6 +16,29 @@ function getUserUri(ServerRequestInterface $request, User $user)
         ->withPath('/users/' . $user->getId());
 }
 
+function userToJson(ServerRequestInterface $request, User $user)
+{
+    $json = [
+        'name' => $user->getName(),
+        'links' => [
+            'self' => getUserUri($request, $user)
+        ]
+    ];
+    
+    $currentUser = $request->getAttribute(
+        AuthenticationMiddleware::CURRENT_USER_KEY
+    );
+    
+    if ($user->getId() === $currentUser->getId()) {
+        $json['links']['family'] =
+            (string)$request->getUri()->withPath('/me/family');
+        $json['links']['invitations'] =
+            (string)$request->getUri()->withPath('/me/invitations');
+    }
+    
+    return $json;
+}
+
 function createEnsureCurrentUserFamilyMiddleware(ObjectManager $db)
 {
     return function (
