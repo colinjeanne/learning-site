@@ -1,6 +1,6 @@
 [
     {
-        "id": "social-emotional",
+        "className": "social-emotional",
         "name": "Social and Emotional Development",
         "skills": [
             {
@@ -138,7 +138,7 @@
         ]
     },
     {
-        "id": "physical",
+        "className": "physical",
         "name": "Physical Development",
         "skills": [
             {
@@ -250,7 +250,7 @@
         ]
     },
     {
-        "id": "language-literacy",
+        "className": "language-literacy",
         "name": "Language and Literacy",
         "skills": [
             {
@@ -478,7 +478,7 @@
         ]
     },
     {
-        "id": "mathematics-reasoning",
+        "className": "mathematics-reasoning",
         "name": "Mathematics and Reasoning",
         "skills": [
             {
@@ -670,7 +670,7 @@
         ]
     },
     {
-        "id": "social-studies",
+        "className": "social-studies",
         "name": "Social Studies",
         "skills": [
             {
@@ -800,7 +800,7 @@
         ]
     },
     {
-        "id": "science",
+        "className": "science",
         "name": "Science",
         "skills": [
             {
@@ -961,7 +961,7 @@
         ]
     },
     {
-        "id": "creative",
+        "className": "creative",
         "name": "Creative Development",
         "skills": [
             {

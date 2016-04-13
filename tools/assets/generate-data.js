@@ -13,10 +13,11 @@ const addBenchmarkIds = benchmarks => benchmarks.map(
         }));
 
 const addIdsDeep = (field, callback) => objs => objs.map(
-    (obj, index) => (
+    (obj, index) => Object.assign(
+        {},
+        obj,
         {
             id: index + 1,
-            name: obj.name,
             [field]: callback(obj[field])
         }));
 
@@ -24,7 +25,15 @@ const addGoalIds = addIdsDeep('benchmarks', addBenchmarkIds);
 const addSkillIds = addIdsDeep('goals', addGoalIds);
 const addSectionIds = addIdsDeep('skills', addSkillIds);
 
-const getBenchmarkIds = benchmarks => benchmarks.map(
+const addSentinelBenchmark = benchmarks => [
+    ...benchmarks,
+    {
+        benchmark: 'SENTINEL',
+        id: benchmarks.length + 1
+    }
+];
+
+const getBenchmarkIds = benchmarks => addSentinelBenchmark(benchmarks).map(
     benchmark => [benchmark.id]);
 
 const getIdsDeep = (field, callback) => objs => objs.reduce(

@@ -1,4 +1,5 @@
 import AddChild from './addChild';
+import { childPropType } from './../propTypes';
 import DataList from './dataList';
 import InviteFamilyMember from './inviteFamilyMember';
 import InviteList from './inviteList';
@@ -7,15 +8,6 @@ import React from 'react';
 const familyMemberPropType = {
     id: React.PropTypes.string.isRequired,
     name: React.PropTypes.string.isRequired
-};
-
-const childPropType = {
-    id: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    skills: React.PropTypes.arrayOf(
-        React.PropTypes.arrayOf(
-            React.PropTypes.number
-        )).isRequired
 };
 
 const invitePropType = {
@@ -33,7 +25,7 @@ const profile = props => {
     
     const childrenListData = props.children.map(child => ({
         text: child.name,
-        key: child.id
+        key: child.links.self
     }));
     
     const invitationSection = (

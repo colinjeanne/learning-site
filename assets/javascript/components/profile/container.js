@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Profile from './profile';
 
-
 const mapStateToProps = state => {
     return {
         children: state.user.children,

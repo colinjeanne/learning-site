@@ -16,11 +16,8 @@ ReactDOM.render(
 
 window.signinSucceeded = user => {
     store.dispatch(signInUser(user));
-    store.dispatch(
-        [
-            getMe(),
-            getMyInvitations()
-        ])[0].
+    store.dispatch(getMyInvitations());
+    store.dispatch(getMe()).
         then(action =>
             store.dispatch(
                 updateMe(

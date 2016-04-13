@@ -96,12 +96,7 @@ const reducer = handleActions({
                         id: member.links.self
                     }));
 
-                const children = action.payload.children.
-                    map(child => ({
-                        name: child.name,
-                        id: child.links.self,
-                        skills: child.skills
-                    }));
+                const children = action.payload.children;
                 
                 return Object.assign(
                     {},
@@ -113,6 +108,56 @@ const reducer = handleActions({
             },
             throw: state => state
         },
+        
+        [Constants.ADD_CHILD]: {
+            next: (state, action) => {
+                if (!action.payload ||
+                    (action.meta && action.meta.volatile) ||
+                    action.error) {
+                    return state;
+                }
+                
+                const filteredChildren = state.children.filter(child =>
+                    child.links.self !== action.payload.links.self);
+                const children = [
+                    ...filteredChildren,
+                    action.payload
+                ];
+                
+                return Object.assign(
+                    {},
+                    state,
+                    {
+                        children
+                    });
+            },
+            throw: state => state
+        },
+        
+        [Constants.UPDATE_CHILD]: {
+            next: (state, action) => {
+                if (!action.payload ||
+                    (action.meta && action.meta.volatile) ||
+                    action.error) {
+                    return state;
+                }
+                
+                const filteredChildren = state.children.filter(child =>
+                    child.links.self !== action.payload.links.self);
+                const children = [
+                    ...filteredChildren,
+                    action.payload
+                ];
+                
+                return Object.assign(
+                    {},
+                    state,
+                    {
+                        children
+                    });
+            },
+            throw: state => state
+        }
     },
     initialState);
 

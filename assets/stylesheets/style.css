@@ -95,3 +95,132 @@ body {
 .familyMemberSection input {
    margin-left: 0.5em;
 }
+
+.skillCalendar {
+   display: flex;
+   justify-content: center;
+}
+
+.skillCalendar td {
+   vertical-align: top;
+   width: 21em;
+}
+
+.skillBody {
+   display: flex;
+   justify-content: flex-start;
+}
+
+.skillClass {
+   display: flex;
+   justify-content: flex-start;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.skillClass li {
+   height: 0.5em;
+   visibility: hidden;
+   width: 3em;
+}
+
+.skillClass li.supportedSkill {
+   visibility: visible;
+}
+
+.skillClass li.social-emotional {
+   background: aqua;
+}
+
+.skillClass li.physical {
+   background: darkred;
+}
+
+.skillClass li.language-literacy {
+   background: lightgreen;
+}
+
+.skillClass li.mathematics-reasoning {
+   background: blue;
+}
+
+.skillClass li.social-studies {
+   background: green;
+}
+
+.skillClass li.science {
+   background: darkorchid;
+}
+
+.skillClass li.creative {
+   background: orangered;
+}
+
+.skillAge {
+   width: 0.5em;
+}
+
+.infant {
+   background: pink;
+}
+
+.toddler {
+   background: purple;
+}
+
+.toddler-preschool {
+   background: repeating-linear-gradient(
+       -45deg,
+       purple,
+       purple 10px,
+       orchid 10px,
+       orchid 20px
+   );
+}
+
+.preschool {
+   background: orchid;
+}
+
+.preschool-preprimary {
+   background: repeating-linear-gradient(
+       -45deg,
+       orchid,
+       orchid 10px,
+       darkmagenta 10px,
+       darkmagenta 20px
+   );
+}
+
+.preprimary {
+   background: darkmagenta;
+}
+
+.preprimary-primary {
+   background: repeating-linear-gradient(
+       -45deg,
+       darkmagenta,
+       darkmagenta 10px,
+       lightcoral 10px,
+       lightcoral 20px
+   );
+}
+
+.primary {
+   background: lightcoral;
+}
+
+.skillText {
+   padding: 0.5em;
+}
+
+.skillFilter {
+   float: right;
+   font-size: 110%;
+   font-weight: bold;
+}
+
+.skillFilter select {
+   margin-left: 0.5em;
+}

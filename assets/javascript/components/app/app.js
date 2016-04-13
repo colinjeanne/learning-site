@@ -1,5 +1,6 @@
 import Constants from '../../constants/constants';
 import Header from './header.js';
+import Progress from './../progress/container';
 import Profile from './../profile/container';
 import React from 'react';
 
@@ -8,7 +9,7 @@ const pageToContent = {
     
     [Constants.pages.ADD_ACTIVITY]: () => {},
     
-    [Constants.pages.CHILD_PROGRESS]: () => {},
+    [Constants.pages.CHILD_PROGRESS]: () => (<Progress />),
     
     [Constants.pages.PROFILE]: props => (<Profile />),
     

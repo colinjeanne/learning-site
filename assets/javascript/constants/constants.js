@@ -19,6 +19,9 @@ export default {
     // Navigation actions
     SHOW_PAGE:              'SHOW_PAGE',
     
+    // Progress page actions
+    SKILL_FILTERED:         'SKILL_FILTERED',
+    
     // User actions
     USER_SIGNIN:            'USER_SIGNIN',
     GET_ME:                 'GET_ME',
