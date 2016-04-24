@@ -558,6 +558,111 @@ class InvitationsControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
     
+    public function testAcceptInvitationAcceptInvitationMoveActivities()
+    {
+        $currentUserFamily = $this->appRunner->createFamily();
+        $currentUser = $this->appRunner->setAuthenticated($currentUserFamily);
+        $activity = $this->appRunner->createActivity(
+            'test activity',
+            $currentUserFamily
+        );
+        
+        $family = $this->appRunner->createFamily();
+        $createdBy = $this->appRunner->createUser('user', $family);
+        
+        $invitation = $this->appRunner->createFamilyInvitation(
+            $currentUser,
+            $createdBy
+        );
+        
+        $otherFamily = $this->appRunner->createFamily();
+        $otherCreatedBy = $this->appRunner->createUser(
+            'otherUser',
+            $otherFamily
+        );
+        
+        $otherInvitation = $this->appRunner->createFamilyInvitation(
+            $currentUser,
+            $otherCreatedBy
+        );
+        
+        $this->setPathToInvitation($invitation->getId());
+        $this->appRunner->setRequestMethod('POST');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(204, $response->getStatusCode());
+        
+        $this->setPathToMyInvitations();
+        $this->appRunner->setRequestMethod('GET');
+        $this->appRunner->setAcceptHeader('application/json');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $expected = [];
+        
+        $this->assertEquals($expected, $actual);
+        
+        $this->appRunner->setRequestPath('/me/family/activities');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $expected = [
+            [
+                'name' => 'test activity',
+                'links' => [
+                    'self' => 'http://example.com/me/family/activities/1'
+                ]
+            ]
+        ];
+        
+        $this->assertEquals($expected, $actual);
+    }
+    
+    public function testAcceptInvitationAcceptInvitationMoveTooManyActivities()
+    {
+        $currentUserFamily = $this->appRunner->createFamily();
+        $currentUser = $this->appRunner->setAuthenticated($currentUserFamily);
+        $activity = $this->appRunner->createActivity(
+            'test activity',
+            $currentUserFamily
+        );
+        
+        $family = $this->appRunner->createFamily();
+        while (!$family->hasMaxActivities()) {
+            $this->appRunner->createActivity('test activity', $family);
+        }
+        
+        $createdBy = $this->appRunner->createUser('user', $family);
+        
+        $invitation = $this->appRunner->createFamilyInvitation(
+            $currentUser,
+            $createdBy
+        );
+        
+        $otherFamily = $this->appRunner->createFamily();
+        $otherCreatedBy = $this->appRunner->createUser(
+            'otherUser',
+            $otherFamily
+        );
+        
+        $otherInvitation = $this->appRunner->createFamilyInvitation(
+            $currentUser,
+            $otherCreatedBy
+        );
+        
+        $this->setPathToInvitation($invitation->getId());
+        $this->appRunner->setRequestMethod('POST');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(400, $response->getStatusCode());
+    }
+    
     private function setPathToMyInvitations()
     {
         $this->appRunner->setRequestPath('/me/invitations');

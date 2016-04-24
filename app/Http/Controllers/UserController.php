@@ -3,7 +3,6 @@
 use App\Middleware\AcceptMiddleware;
 use App\Middleware\AuthenticationMiddleware;
 use App\Middleware\AuthenticationRequiredMiddleware;
-use App\Middleware\FastRouteMiddleware;
 use App\Middleware\ParseAsJsonMiddleware;
 use App\Models\User;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,34 +20,6 @@ function areUsersFamily(User $userA, User $userB)
     return ($userA->getId() === $userB->getId()) ||
         ($userA->getFamily() && $userB->getFamily() &&
          ($userA->getFamily()->getId() === $userB->getFamily()->getId()));
-}
-
-function createReadUserArgumentsMiddleware(ObjectManager $db)
-{
-    return function (
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        callable $next
-    ) use (
-        $db
-    ) {
-        $arguments = $request->getAttribute(
-            FastRouteMiddleware::ROUTE_ARGUMENTS
-        );
-        
-        $userId = $arguments['id'];
-        $user = $db->getRepository(User::class)->find($userId);
-        if (!$user) {
-            return new EmptyResponse(
-                404,
-                $response->getHeaders()
-            );
-        }
-        
-        $request = $request->withAttribute(READ_USER_KEY, $user);
-        
-        return $next($request, $response);
-    };
 }
 
 function validateUserJsonForUpdate(
@@ -85,7 +56,7 @@ function validateUserJsonForUpdate(
         $validator->assert($json);
     } catch (NestedValidationException $e) {
         return new JsonResponse(
-            $e->getFullMessage(),
+            [$e->getFullMessage()],
             400,
             $response->getHeaders()
         );
@@ -157,19 +128,26 @@ class UserController
             new AcceptMiddleware(['application/json'])
         ];
         
+        $readUserMiddleware =
+            \App\Http\Controllers\createReadObjectArgumentsMiddleware(
+                $this->db,
+                User::class,
+                READ_USER_KEY
+            );
+        
         switch ($methodName) {
             case 'getMe':
                 break;
             
             case 'getUser':
-                $middleware[] = createReadUserArgumentsMiddleware($this->db);
+                $middleware[] = $readUserMiddleware;
                 $middleware[] =
                     '\App\Http\Controllers\authorizeCurrentUserToReadUser';
                 break;
             
             case 'updateUser':
                 $middleware[] = new ParseAsJsonMiddleware();
-                $middleware[] = createReadUserArgumentsMiddleware($this->db);
+                $middleware[] = $readUserMiddleware;
                 $middleware[] =
                     '\App\Http\Controllers\validateUserJsonForUpdate';
                 $middleware[] =

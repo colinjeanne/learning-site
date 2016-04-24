@@ -14,6 +14,9 @@ class Router
     {
         $this->container = $container;
         
+        $this->container->add(Controllers\ActivityController::class)
+            ->withArgument('doctrine');
+            
         $this->container->add(Controllers\UserController::class)
             ->withArgument('doctrine');
         
@@ -53,6 +56,30 @@ class Router
             'PUT',
             '/me/family/children/{id:\d+}',
             'FamilyController@updateChild'
+        );
+        
+        $this->addRoute(
+            'GET',
+            '/me/family/activities',
+            'ActivityController@getActivities'
+        );
+        
+        $this->addRoute(
+            'POST',
+            '/me/family/activities',
+            'ActivityController@createActivity'
+        );
+        
+        $this->addRoute(
+            'GET',
+            '/me/family/activities/{id:\d+}',
+            'ActivityController@getActivity'
+        );
+        
+        $this->addRoute(
+            'PUT',
+            '/me/family/activities/{id:\d+}',
+            'ActivityController@updateActivity'
         );
         
         $this->addRoute(

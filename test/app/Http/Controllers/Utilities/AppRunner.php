@@ -1,6 +1,8 @@
 <?php namespace Test\Http\Controllers\Utilities;
 
 use App\App;
+use App\Models\Activity;
+use App\Models\ActivityLink;
 use App\Models\Child;
 use App\Models\Family;
 use App\Models\FamilyInvitation;
@@ -35,6 +37,31 @@ class AppRunner
     public function run()
     {
         return $this->app->run($this->request);
+    }
+    
+    public function createActivity($name, Family $family = null)
+    {
+        $activity = new Activity($name);
+        
+        if ($family) {
+            $family->addActivity($activity);
+        }
+        
+        $this->database->persist($activity);
+        $this->database->flush();
+        
+        return $activity;
+    }
+    
+    public function createActivityLink($title, $uri, Activity $activity)
+    {
+        $activityLink = new ActivityLink($title, $uri);
+        $activity->addLink($activityLink);
+        
+        $this->database->persist($activityLink);
+        $this->database->flush();
+        
+        return $activityLink;
     }
     
     public function createFamily()

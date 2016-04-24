@@ -42,7 +42,7 @@ function createValidateUserIdMiddleware(ObjectManager $db)
             $validator->assert($json);
         } catch (NestedValidationException $e) {
             return new JsonResponse(
-                $e->getFullMessage(),
+                [$e->getFullMessage()],
                 400,
                 $response->getHeaders()
             );
@@ -263,6 +263,21 @@ class InvitationsController
             }
             
             $family->addMember($currentUser);
+        }
+        
+        if ($originalFamily) {
+            $activities = $originalFamily->getActivities()->getValues();
+            foreach ($activities as $activity) {
+                if ($family->hasMaxActivities()) {
+                    return new JsonResponse(
+                        ['Family has too many activities'],
+                        400,
+                        $response->getHeaders()
+                    );
+                }
+                
+                $family->addActivity($activity);
+            }
         }
         
         foreach ($currentUser->getInvitations() as $oldInvitation) {

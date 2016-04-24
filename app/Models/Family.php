@@ -2,6 +2,13 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+function createActivityComparison(Activity $activity)
+{
+    return function ($key, Activity $otherActivity) use ($activity) {
+        return $otherActivity->getId() === $activity->getId();
+    };
+}
+
 function createUserComparison(User $user)
 {
     return function ($key, User $otherUser) use ($user) {
@@ -25,6 +32,7 @@ class Family
     const MAX_NUMBER_OF_MEMBERS = 10;
     const MAX_NUMBER_OF_INVITATIONS = 10;
     const MAX_NUMBER_OF_CHILDREN = 10;
+    const MAX_NUMBER_OF_ACTIVITIES = 255;
     
     /**
      * @Id
@@ -33,6 +41,12 @@ class Family
      * @var int
      */
     private $id;
+    
+    /**
+     * @OneToMany(targetEntity="App\Models\Activity", mappedBy="family")
+     * @var App\Models\Activity[]
+     */
+    private $activities;
     
     /**
      * @OneToMany(targetEntity="App\Models\Child", mappedBy="family")
@@ -54,6 +68,7 @@ class Family
 
     public function __construct()
     {
+        $this->activities = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->members = new ArrayCollection();
         $this->invitations = new ArrayCollection();
@@ -62,6 +77,35 @@ class Family
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getActivities()
+    {
+        return $this->activities ? $this->activities : new ArrayCollection();
+    }
+    
+    public function hasMaxActivities()
+    {
+        return $this->getActivities()->count() ==
+            self::MAX_NUMBER_OF_ACTIVITIES;
+    }
+    
+    public function hasActivity(Activity $activity)
+    {
+        $comparer = createActivityComparison($activity);
+        return $this->getActivities()->exists($comparer);
+    }
+
+    public function addActivity(Activity $activity)
+    {
+        if (!$this->hasActivity($activity)) {
+            if ($this->hasMaxActivities()) {
+                throw new \InvalidArgumentException('Too many activities');
+            }
+            
+            $this->getActivities()[] = $activity;
+            $activity->setFamily($this);
+        }
     }
     
     public function getChildren()

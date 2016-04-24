@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Middleware\AuthenticationMiddleware;
+use App\Middleware\FastRouteMiddleware;
 use App\Models\Family;
 use App\Models\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\EmptyResponse;
 
 const READ_USER_KEY = 'read_user_key';
 
@@ -61,6 +63,36 @@ function createEnsureCurrentUserFamilyMiddleware(ObjectManager $db)
             // we can simply regenerate this family if it didn't already exist.
             $db->persist($family);
         }
+        
+        return $next($request, $response);
+    };
+}
+
+function createReadObjectArgumentsMiddleware(ObjectManager $db, $class, $key)
+{
+    return function (
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) use (
+        $db,
+        $class,
+        $key
+    ) {
+        $arguments = $request->getAttribute(
+            FastRouteMiddleware::ROUTE_ARGUMENTS
+        );
+        
+        $id = $arguments['id'];
+        $obj = $db->getRepository($class)->find($id);
+        if (!$obj) {
+            return new EmptyResponse(
+                404,
+                $response->getHeaders()
+            );
+        }
+        
+        $request = $request->withAttribute($key, $obj);
         
         return $next($request, $response);
     };

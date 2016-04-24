@@ -3,7 +3,6 @@
 use App\Middleware\AcceptMiddleware;
 use App\Middleware\AuthenticationMiddleware;
 use App\Middleware\AuthenticationRequiredMiddleware;
-use App\Middleware\FastRouteMiddleware;
 use App\Middleware\ParseAsJsonMiddleware;
 use App\Models\Child;
 use App\Models\Family;
@@ -26,34 +25,6 @@ function getChildUri(ServerRequestInterface $request, Child $child)
     return (string)$request
         ->getUri()
         ->withPath('/me/family/children/' . $child->getId());
-}
-
-function createReadChildArgumentsMiddleware(ObjectManager $db)
-{
-    return function (
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        callable $next
-    ) use (
-        $db
-    ) {
-        $arguments = $request->getAttribute(
-            FastRouteMiddleware::ROUTE_ARGUMENTS
-        );
-        
-        $id = $arguments['id'];
-        $child = $db->getRepository(Child::class)->find($id);
-        if (!$child) {
-            return new EmptyResponse(
-                404,
-                $response->getHeaders()
-            );
-        }
-        
-        $request = $request->withAttribute(READ_CHILD_KEY, $child);
-        
-        return $next($request, $response);
-    };
 }
 
 function authorizeCurrentUserToUpdateChild(
@@ -122,7 +93,7 @@ function validateChildJsonForCreate(
         $validator->assert($json);
     } catch (NestedValidationException $e) {
         return new JsonResponse(
-            $e->getFullMessage(),
+            [$e->getFullMessage()],
             400,
             $response->getHeaders()
         );
@@ -156,7 +127,7 @@ function validateChildJsonForUpdate(
         $validator->assert($json);
     } catch (NestedValidationException $e) {
         return new JsonResponse(
-            $e->getFullMessage(),
+            [$e->getFullMessage()],
             400,
             $response->getHeaders()
         );
@@ -166,7 +137,7 @@ function validateChildJsonForUpdate(
         \App\Assets\validateSkills($json['skills']);
     } catch (\App\Assets\SkillValidationException $e) {
         return new JsonResponse(
-            $e->getMessage(),
+            [$e->getMessage()],
             400,
             $response->getHeaders()
         );
@@ -198,6 +169,13 @@ class FamilyController
             createEnsureCurrentUserFamilyMiddleware($this->db)
         ];
         
+        $readChildMiddleware =
+            \App\Http\Controllers\createReadObjectArgumentsMiddleware(
+                $this->db,
+                Child::class,
+                READ_CHILD_KEY
+            );
+        
         switch ($methodName) {
             case 'getMyFamily':
                 break;
@@ -210,7 +188,7 @@ class FamilyController
             
             case 'updateChild':
                 $middleware[] = new ParseAsJsonMiddleware();
-                $middleware[] = createReadChildArgumentsMiddleware($this->db);
+                $middleware[] = $readChildMiddleware;
                 $middleware[] =
                     '\App\Http\Controllers\authorizeCurrentUserToUpdateChild';
                 $middleware[] =
