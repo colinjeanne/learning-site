@@ -2,7 +2,7 @@ const pages = {
     ACTIVITIES:         'Activities',
     ADD_ACTIVITY:       'Add Activity',
     CHILD_PROGRESS:     'Child Progress',
-    UNAUTHORIZED:       'Unauthorized',
+    UNAUTHENTICATED:    'Unauthenticated',
     PROFILE:            'Profile'
 };
 

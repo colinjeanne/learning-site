@@ -2,7 +2,7 @@ import Constants from '../constants/constants';
 import { handleActions } from 'redux-actions';
 
 const initialState = {
-    page: Constants.pages.UNAUTHORIZED
+    page: Constants.pages.UNAUTHENTICATED
 };
 
 const reducer = handleActions({

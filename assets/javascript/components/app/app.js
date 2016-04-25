@@ -3,6 +3,7 @@ import Header from './header.js';
 import Progress from './../progress/container';
 import Profile from './../profile/container';
 import React from 'react';
+import Unauthenticated from './../unauthenticated/unauthenticated';
 
 const pageToContent = {
     [Constants.pages.ACTIVITIES]: () => {},
@@ -13,7 +14,7 @@ const pageToContent = {
     
     [Constants.pages.PROFILE]: props => (<Profile />),
     
-    [Constants.pages.UNAUTHORIZED]: () => {}
+    [Constants.pages.UNAUTHENTICATED]: () => (<Unauthenticated />)
 };
 
 const app = props => {
