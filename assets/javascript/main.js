@@ -1,5 +1,6 @@
 import AppContainer from './components/app/container';
 import { getMe, signInUser, updateMe } from './actions/user';
+import { getMyActivities } from './actions/activity';
 import { getMyFamily } from './actions/family';
 import { getMyInvitations } from './actions/invite';
 import { Provider } from 'react-redux';
@@ -24,6 +25,7 @@ window.signinSucceeded = user => {
                     action.payload.links.self,
                     user.getBasicProfile().getName())));
     store.dispatch(getMyFamily());
+    store.dispatch(getMyActivities());
 };
 
 window.signinFailed = error => store.dispatch(signInUser(error));

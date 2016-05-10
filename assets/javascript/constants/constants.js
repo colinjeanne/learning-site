@@ -2,13 +2,14 @@ const pages = {
     ACTIVITIES:         'Activities',
     ADD_ACTIVITY:       'Add Activity',
     CHILD_PROGRESS:     'Child Progress',
+    EDIT_ACTIVITY:      'Edit Activity',
+    PROFILE:            'Profile',
     UNAUTHENTICATED:    'Unauthenticated',
-    PROFILE:            'Profile'
+    VIEW_ACTIVITY:      'View Activity'
 };
 
 const navigationPages = [
     pages.ACTIVITIES,
-    pages.ADD_ACTIVITY,
     pages.CHILD_PROGRESS
 ];
 
@@ -17,10 +18,18 @@ export default {
     navigationPages:        navigationPages,
     
     // Navigation actions
+    ACTIVITY_FILTERED:      'ACTIVITY_FILTERED',
+    SELECT_ACTIVITY:        'SELECT_ACTIVITY',
     SHOW_PAGE:              'SHOW_PAGE',
     
     // Progress page actions
     SKILL_FILTERED:         'SKILL_FILTERED',
+    
+    // Activity actions
+    GET_MY_ACTIVITIES:      'GET_MY_ACTIVITIES',
+    ADD_ACTIVITY:           'ADD_ACTIVITY',
+    GET_ACTIVITY:           'GET_ACTIVITY',
+    UPDATE_ACTIVITY:        'UPDATE_ACTIVITY',
     
     // User actions
     USER_SIGNIN:            'USER_SIGNIN',

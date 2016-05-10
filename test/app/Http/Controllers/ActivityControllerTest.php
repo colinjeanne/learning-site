@@ -524,6 +524,15 @@ class ActivityControllerTest extends \PHPUnit_Framework_TestCase
         $actual = $this->appRunner->getResponseJson($response);
         
         $this->assertEquals($expected, $actual);
+        
+        $this->appRunner->setRequestMethod('GET');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $this->assertEquals($expected, $actual);
     }
     
     public function testUpdateActivityAddActivityLink()
@@ -560,6 +569,15 @@ class ActivityControllerTest extends \PHPUnit_Framework_TestCase
         ];
         
         $this->appRunner->setBody($expected, 'application/json');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $this->assertEquals($expected, $actual);
+        
+        $this->appRunner->setRequestMethod('GET');
         
         $response = $this->appRunner->run();
         $this->assertEquals(200, $response->getStatusCode());
@@ -667,6 +685,15 @@ class ActivityControllerTest extends \PHPUnit_Framework_TestCase
         $actual = $this->appRunner->getResponseJson($response);
         
         $this->assertEquals($expected, $actual);
+        
+        $this->appRunner->setRequestMethod('GET');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $this->assertEquals($expected, $actual);
     }
     
     public function testUpdateActivityAddAndRemoveActivityLinks()
@@ -717,6 +744,15 @@ class ActivityControllerTest extends \PHPUnit_Framework_TestCase
         ];
         
         $this->appRunner->setBody($expected, 'application/json');
+        
+        $response = $this->appRunner->run();
+        $this->assertEquals(200, $response->getStatusCode());
+        
+        $actual = $this->appRunner->getResponseJson($response);
+        
+        $this->assertEquals($expected, $actual);
+        
+        $this->appRunner->setRequestMethod('GET');
         
         $response = $this->appRunner->run();
         $this->assertEquals(200, $response->getStatusCode());

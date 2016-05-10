@@ -87,7 +87,8 @@ body {
 
 .childrenSection ul,
 .familyMemberSection ul,
-.invitationSection ul {
+.invitationSection ul,
+.activityLinksList ul {
    list-style-type: none;
 }
 
@@ -171,11 +172,11 @@ body {
 
 .toddler-preschool {
    background: repeating-linear-gradient(
-       -45deg,
-       purple,
-       purple 10px,
-       orchid 10px,
-       orchid 20px
+      -45deg,
+      purple,
+      purple 10px,
+      orchid 10px,
+      orchid 20px
    );
 }
 
@@ -185,11 +186,11 @@ body {
 
 .preschool-preprimary {
    background: repeating-linear-gradient(
-       -45deg,
-       orchid,
-       orchid 10px,
-       darkmagenta 10px,
-       darkmagenta 20px
+      -45deg,
+      orchid,
+      orchid 10px,
+      darkmagenta 10px,
+      darkmagenta 20px
    );
 }
 
@@ -199,11 +200,11 @@ body {
 
 .preprimary-primary {
    background: repeating-linear-gradient(
-       -45deg,
-       darkmagenta,
-       darkmagenta 10px,
-       lightcoral 10px,
-       lightcoral 20px
+      -45deg,
+      darkmagenta,
+      darkmagenta 10px,
+      lightcoral 10px,
+      lightcoral 20px
    );
 }
 
@@ -223,4 +224,45 @@ body {
 
 .skillFilter select {
    margin-left: 0.5em;
+}
+
+.activitiesHeader {
+   display: flex;
+   justify-content: space-between;
+}
+
+.activitiesFilter span {
+   margin-right: 0.5em;
+}
+
+.activitiesList {
+   display: flex;
+   justify-content: center;
+}
+
+.activitiesList ol {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   width: 60em;
+}
+
+.activityItem {
+   background-color: #8c6239;
+   color: white;
+   cursor: pointer;
+   margin: 0.5em 0;
+   padding: 0.5em;
+}
+
+.activityItem:hover {
+   background-color: #005826;
+}
+
+.activityEditFooter {
+   margin-top: 1em;
+}
+
+.addActivityLink label {
+   margin-right: 0.5em;
 }

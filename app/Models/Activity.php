@@ -127,6 +127,7 @@ class Activity
             }
             
             $this->getLinks()[] = $link;
+            $link->setActivity($this);
         }
     }
     

@@ -1,20 +1,27 @@
-import Constants from '../../constants/constants';
+import Activities from './../activities/container';
+import Constants from './../../constants/constants';
+import EditActivity from './../editActivity/container';
 import Header from './header.js';
 import Progress from './../progress/container';
 import Profile from './../profile/container';
 import React from 'react';
 import Unauthenticated from './../unauthenticated/unauthenticated';
+import ViewActivity from './../viewActivity/container';
 
 const pageToContent = {
-    [Constants.pages.ACTIVITIES]: () => {},
+    [Constants.pages.ACTIVITIES]: () => (<Activities />),
     
-    [Constants.pages.ADD_ACTIVITY]: () => {},
+    [Constants.pages.ADD_ACTIVITY]: () => (<EditActivity />),
     
     [Constants.pages.CHILD_PROGRESS]: () => (<Progress />),
     
+    [Constants.pages.EDIT_ACTIVITY]: () => (<EditActivity />),
+    
     [Constants.pages.PROFILE]: props => (<Profile />),
     
-    [Constants.pages.UNAUTHENTICATED]: () => (<Unauthenticated />)
+    [Constants.pages.UNAUTHENTICATED]: () => (<Unauthenticated />),
+    
+    [Constants.pages.VIEW_ACTIVITY]: () => (<ViewActivity />)
 };
 
 const app = props => {
