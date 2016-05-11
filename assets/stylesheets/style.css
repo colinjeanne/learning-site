@@ -7,7 +7,6 @@ header {
    font-size: 130%;
    justify-content: space-between;
    margin-bottom: 0.5em;
-   padding: 0.5em;
    text-transform: capitalize;
 }
 
@@ -22,7 +21,7 @@ header h1 {
    padding: 0.5em 0;
 }
 
-header span {
+header > span {
    display: flex;
 }
 
@@ -47,7 +46,6 @@ body {
 
 #mainNavigation label {
    cursor: pointer;
-   padding: 0.5em 0.5em;
 }
 
 #mainNavigation label:hover,
@@ -59,11 +57,8 @@ body {
    display: none;
 }
 
-#userTile {
-   margin-left: 1em;
-}
-
-#userContainer {
+.userContainer,
+.userContainerNarrow {
    background-color: transparent;
    border: none;
    color: inherit;
@@ -72,7 +67,8 @@ body {
    padding: 0.5em 0.5em;
 }
 
-#userContainer:hover,
+.userContainer:hover,
+.userContainerNarrow:hover,
 .userTileToggled {
    background-color: #005826;
 }
@@ -265,4 +261,68 @@ body {
 
 .addActivityLink label {
    margin-right: 0.5em;
+}
+
+@media (min-width: 1024px) {
+   header {
+      padding: 0.5em;
+   }
+
+   #mainNavigation label {
+      padding: 0.5em 0.5em;
+   }
+
+   #userTile {
+     margin-left: 1em;
+   }
+
+   .userContainerNarrow {
+      display: none;
+   }
+
+   .narrowTitle {
+      display: none;
+   }
+}
+
+@media (max-width: 1023px) {
+   header {
+      padding: 0 0.5em;
+   }
+
+   #mainNavigation label {
+      padding: 0 0.5em;
+   }
+
+   #userTile {
+     margin-left: 0;
+   }
+
+   .activitiesHeader > button {
+      display: none;
+   }
+
+   .activityEditButton {
+      display: none;
+   }
+
+   .previousBenchmarkColumn {
+      display: none;
+   }
+
+   .nextBenchmarkColumn {
+      display: none;
+   }
+
+   .userContainer {
+      display: none;
+   }
+
+   .narrowTitle {
+      width: 2em;
+   }
+
+   .wideTitle {
+      display: none;
+   }
 }

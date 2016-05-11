@@ -12,7 +12,7 @@ const viewActivity = props => {
             </section>
         ) :
         undefined;
-    
+
     return (
         <section>
             <h1>
@@ -31,6 +31,7 @@ const viewActivity = props => {
                         Back
                     </button>
                     <button
+                        className="activityEditButton"
                         onClick={props.onEdit}
                         type="button">
                         Edit

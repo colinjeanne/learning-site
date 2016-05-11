@@ -19,7 +19,7 @@ gulp.task('browserify', ['babel-src'], () =>
       .on('error', err => console.log('Error: ' + err.message))
       .pipe(source('main.js'))
       .pipe(buffer())
-      .pipe(uglify())
+      //.pipe(uglify())
       .pipe(gulp.dest('./public/')));
 
 gulp.task('babel-src', () =>

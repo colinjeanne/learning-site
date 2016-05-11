@@ -15,10 +15,10 @@ const skillCalendar = props => {
             skill,
             nextBenchmark(skill)
         ]);
-    
+
     const skillRows = skillTable.map((skillRow, index) => (
         <tr key={'skillRow' + index}>
-            <td>
+            <td className="previousBenchmarkColumn">
                 <SkillCard
                     checked="checked"
                     onSkillChange={props.onSkillChange}
@@ -29,7 +29,7 @@ const skillCalendar = props => {
                     onSkillChange={props.onSkillChange}
                     skill={skillRow[1]} />
             </td>
-            <td>
+            <td className="nextBenchmarkColumn">
                 <SkillCard
                     disabled="disabled"
                     onSkillChange={props.onSkillChange}
@@ -37,15 +37,19 @@ const skillCalendar = props => {
             </td>
         </tr>
     ));
-    
+
     return (
         <table
             className="skillCalendar">
             <thead>
                 <tr>
-                    <th>Recently Completed</th>
+                    <th className="previousBenchmarkColumn">
+                        Recently Completed
+                    </th>
                     <th>In Progress</th>
-                    <th>Coming Up</th>
+                    <th className="nextBenchmarkColumn">
+                        Coming Up
+                    </th>
                 </tr>
             </thead>
             <tbody>

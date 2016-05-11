@@ -8,7 +8,10 @@ const tabbedNavigationButton = props => (
             name="tab"
             onChange={() => props.onSelect(props.id)}
             type="radio" />
-        <label htmlFor={props.id}>{props.title}</label>
+        <label htmlFor={props.id}>
+            <span className="narrowTitle">{props.title.narrow}</span>
+            <span className="wideTitle">{props.title.wide}</span>
+        </label>
     </li>
 );
 
