@@ -19,7 +19,10 @@ tabbedNavigationButton.propTypes = {
     id: React.PropTypes.string.isRequired,
     onSelect: React.PropTypes.func.isRequired,
     selected: React.PropTypes.bool,
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.shape({
+        narrow: React.PropTypes.string.isRequired,
+        wide: React.PropTypes.string.isRequired
+    }).isRequired
 };
 
 export default tabbedNavigationButton;

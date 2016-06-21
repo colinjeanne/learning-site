@@ -25,7 +25,7 @@ const tabbedNavigation = props => {
 tabbedNavigation.propTypes = {
     onSelect: React.PropTypes.func.isRequired,
     selectedPage: React.PropTypes.string,
-    tabs: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+    tabs: React.PropTypes.object.isRequired
 };
 
 export default tabbedNavigation;

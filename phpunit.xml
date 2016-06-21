@@ -15,4 +15,9 @@
         <env name="CLAIM_SUBJECT" value="test-subject"/>
         <env name="DOCTRINE_DRIVER" value="pdo_sqlite"/>
     </php>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app/</directory>
+        </whitelist>
+    </filter>
 </phpunit>

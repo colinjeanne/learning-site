@@ -29,3 +29,15 @@ window.signinSucceeded = user => {
 };
 
 window.signinFailed = error => store.dispatch(signInUser(error));
+
+document.addEventListener('DOMContentLoaded', () => {
+    const authenticatedMeta = document.querySelector('meta[name="is-authenticated"]');
+    const isAuthenticated = authenticatedMeta.content === 'true';
+    if (isAuthenticated) {
+        store.dispatch(signInUser());
+        store.dispatch(getMyInvitations());
+        store.dispatch(getMe());
+        store.dispatch(getMyFamily());
+        store.dispatch(getMyActivities());
+    }
+});

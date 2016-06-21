@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Middleware\AuthenticationMiddleware;
+use App\Auth\Constants;
 use App\Middleware\FastRouteMiddleware;
 use App\Models\Family;
 use App\Models\User;
@@ -26,18 +26,18 @@ function userToJson(ServerRequestInterface $request, User $user)
             'self' => getUserUri($request, $user)
         ]
     ];
-    
+
     $currentUser = $request->getAttribute(
-        AuthenticationMiddleware::CURRENT_USER_KEY
+        Constants::CURRENT_USER_KEY
     );
-    
+
     if ($user->getId() === $currentUser->getId()) {
         $json['links']['family'] =
             (string)$request->getUri()->withPath('/me/family');
         $json['links']['invitations'] =
             (string)$request->getUri()->withPath('/me/invitations');
     }
-    
+
     return $json;
 }
 
@@ -51,19 +51,19 @@ function createEnsureCurrentUserFamilyMiddleware(ObjectManager $db)
         $db
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         if (!$currentUser->getFamily()) {
             $family = new Family();
             $family->addMember($currentUser);
-            
+
             // Don't both flushing the database for this operation. If
             // something else flushes the database, that's fine but otherwise
             // we can simply regenerate this family if it didn't already exist.
             $db->persist($family);
         }
-        
+
         return $next($request, $response);
     };
 }
@@ -82,7 +82,7 @@ function createReadObjectArgumentsMiddleware(ObjectManager $db, $class, $key)
         $arguments = $request->getAttribute(
             FastRouteMiddleware::ROUTE_ARGUMENTS
         );
-        
+
         $id = $arguments['id'];
         $obj = $db->getRepository($class)->find($id);
         if (!$obj) {
@@ -91,9 +91,9 @@ function createReadObjectArgumentsMiddleware(ObjectManager $db, $class, $key)
                 $response->getHeaders()
             );
         }
-        
+
         $request = $request->withAttribute($key, $obj);
-        
+
         return $next($request, $response);
     };
 }

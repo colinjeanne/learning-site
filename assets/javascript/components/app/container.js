@@ -6,6 +6,7 @@ import { showPage } from '../../actions/navigation';
 const mapStateToProps = state => {
     return {
         displayName: state.user.me.name,
+        isSignedIn: state.user.isSignedIn,
         page: state.navigation.page
     };
 };

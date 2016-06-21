@@ -15,6 +15,20 @@ const viewActivity = props => {
 
     return (
         <section>
+            <section
+                className="activityViewHeader">
+                <button
+                    onClick={props.onBack}
+                    type="button">
+                    Back
+                </button>
+                <button
+                    className="activityEditButton"
+                    onClick={props.onEdit}
+                    type="button">
+                    Edit
+                </button>
+            </section>
             <h1>
                 {props.activity.name}
             </h1>
@@ -23,20 +37,6 @@ const viewActivity = props => {
                     {props.activity.description}
                 </section>
                 {linksSection}
-                <section
-                    className="activityViewFooter">
-                    <button
-                        onClick={props.onBack}
-                        type="button">
-                        Back
-                    </button>
-                    <button
-                        className="activityEditButton"
-                        onClick={props.onEdit}
-                        type="button">
-                        Edit
-                    </button>
-                </section>
             </section>
         </section>
     );

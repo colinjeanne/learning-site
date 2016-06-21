@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Auth\Constants;
 use App\Middleware\AcceptMiddleware;
-use App\Middleware\AuthenticationMiddleware;
 use App\Middleware\AuthenticationRequiredMiddleware;
 use App\Middleware\ParseAsJsonMiddleware;
 use App\Models\Child;
@@ -10,7 +10,8 @@ use App\Models\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Respect\Validation\Exceptions\NestedValidationExceptionInterface as NestedValidationException;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Validator as v;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\JsonResponse;
@@ -33,18 +34,18 @@ function authorizeCurrentUserToUpdateChild(
     callable $next
 ) {
     $child = $request->getAttribute(READ_CHILD_KEY);
-    
+
     $currentUser = $request->getAttribute(
-        AuthenticationMiddleware::CURRENT_USER_KEY
+        Constants::CURRENT_USER_KEY
     );
-    
+
     if (!$currentUser->getFamily()->hasChild($child)) {
         return new EmptyResponse(
             403,
             $response->getHeaders()
         );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -83,12 +84,12 @@ function validateChildJsonForCreate(
     callable $next
 ) {
     $json = $request->getParsedBody();
-    
-    $validator = v::arrType()->
-        keyset(
-            v::key('name', v::strType()->length(0, 255))
+
+    $validator = v::arrayType()->
+        keySet(
+            v::key('name', v::stringType()->length(0, 255))
         );
-    
+
     try {
         $validator->assert($json);
     } catch (NestedValidationException $e) {
@@ -98,7 +99,7 @@ function validateChildJsonForCreate(
             $response->getHeaders()
         );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -109,20 +110,20 @@ function validateChildJsonForUpdate(
 ) {
     $child = $request->getAttribute(READ_CHILD_KEY);
     $json = $request->getParsedBody();
-    
-    $validator = v::arrType()->
-        keyset(
-            v::key('name', v::strType()->length(0, 255)),
-            v::key('skills', v::arrType()),
+
+    $validator = v::arrayType()->
+        keySet(
+            v::key('name', v::stringType()->length(0, 255)),
+            v::key('skills', v::arrayType()),
             v::key(
                 'links',
-                v::arrType()->keySet(
+                v::arrayType()->keySet(
                     v::key('self', v::equals(getChildUri($request, $child)))
                 ),
                 false
             )
         );
-    
+
     try {
         $validator->assert($json);
     } catch (NestedValidationException $e) {
@@ -131,8 +132,14 @@ function validateChildJsonForUpdate(
             400,
             $response->getHeaders()
         );
+    } catch (ValidationException $e) {
+        return new JsonResponse(
+            [$e->getMainMessage()],
+            400,
+            $response->getHeaders()
+        );
     }
-    
+
     try {
         \App\Assets\validateSkills($json['skills']);
     } catch (\App\Assets\SkillValidationException $e) {
@@ -142,7 +149,7 @@ function validateChildJsonForUpdate(
             $response->getHeaders()
         );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -155,12 +162,12 @@ function updateChildFromJson(Child $child, array $json)
 class FamilyController
 {
     private $db;
-    
+
     public function __construct(ObjectManager $db)
     {
         $this->db = $db;
     }
-    
+
     public function getMiddleware($methodName)
     {
         $middleware = [
@@ -168,24 +175,24 @@ class FamilyController
             new AcceptMiddleware(['application/json']),
             createEnsureCurrentUserFamilyMiddleware($this->db)
         ];
-        
+
         $readChildMiddleware =
             \App\Http\Controllers\createReadObjectArgumentsMiddleware(
                 $this->db,
                 Child::class,
                 READ_CHILD_KEY
             );
-        
+
         switch ($methodName) {
             case 'getMyFamily':
                 break;
-            
+
             case 'addChild':
                 $middleware[] = new ParseAsJsonMiddleware();
                 $middleware[] =
                     '\App\Http\Controllers\validateChildJsonForCreate';
                 break;
-            
+
             case 'updateChild':
                 $middleware[] = new ParseAsJsonMiddleware();
                 $middleware[] = $readChildMiddleware;
@@ -195,40 +202,40 @@ class FamilyController
                     '\App\Http\Controllers\validateChildJsonForUpdate';
                 break;
         }
-        
+
         return $middleware;
     }
-    
+
     public function getMyFamily(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         return new JsonResponse(
             familyToJson($request, $currentUser->getFamily()),
             $response->getStatusCode(),
             $response->getHeaders()
         );
     }
-    
+
     public function addChild(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         $family = $currentUser->getFamily();
-        
+
         $json = $request->getParsedBody();
         $child = new Child($json['name']);
-        
+
         if (!$family->hasChild($child)) {
             if ($family->hasMaxChildren()) {
                 return new JsonResponse(
@@ -237,36 +244,36 @@ class FamilyController
                     $response->getHeaders()
                 );
             }
-            
+
             $family->addChild($child);
-            
+
             $this->db->persist($child);
             $this->db->flush();
         }
-        
+
         return new JsonResponse(
             childToJson($request, $child),
             201,
             $response->getHeaders()
         );
     }
-    
+
     public function updateChild(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         $child = $request->getAttribute(READ_CHILD_KEY);
         $json = $request->getParsedBody();
-        
+
         updateChildFromJson($child, $json);
-        
+
         $this->db->flush();
-        
+
         return new JsonResponse(
             childToJson($request, $child),
             $response->getStatusCode(),

@@ -213,7 +213,6 @@ body {
 }
 
 .skillFilter {
-   float: right;
    font-size: 110%;
    font-weight: bold;
 }
@@ -225,6 +224,10 @@ body {
 .activitiesHeader {
    display: flex;
    justify-content: space-between;
+}
+
+.activityViewHeader button:not(:first-child) {
+   margin-left: 1em;
 }
 
 .activitiesFilter span {
@@ -273,7 +276,11 @@ body {
    }
 
    #userTile {
-     margin-left: 1em;
+      margin-left: 1em;
+   }
+
+   .userTileNarrow {
+      display: none;
    }
 
    .userContainerNarrow {
@@ -282,6 +289,10 @@ body {
 
    .narrowTitle {
       display: none;
+   }
+
+   .skillFilter {
+      float: right;
    }
 }
 
@@ -295,7 +306,11 @@ body {
    }
 
    #userTile {
-     margin-left: 0;
+      margin-left: 0;
+   }
+
+   .g-signin2 {
+      display: none;
    }
 
    .activitiesHeader > button {
@@ -324,5 +339,9 @@ body {
 
    .wideTitle {
       display: none;
+   }
+
+   .skillFilter {
+      display: block;
    }
 }

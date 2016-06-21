@@ -8,36 +8,41 @@ use Zend\Diactoros\Response;
 class App
 {
     private $container;
-    
+
     public function __construct()
     {
         date_default_timezone_set('UTC');
-        
+
         $this->container = new Container();
-        
+
         $this->container->addServiceProvider(
             ServiceProviders\AuthServiceProvider::class
         );
-        
+
         $this->container->addServiceProvider(
             ServiceProviders\DoctrineServiceProvider::class
         );
-        
+
         $this->container->addServiceProvider(
             ServiceProviders\MonologServiceProvider::class
         );
-        
+
         $this->container->addServiceProvider(
             ServiceProviders\RouteServiceProvider::class
         );
+
+        $this->container->addServiceProvider(
+            ServiceProviders\SessionServiceProvider::class
+        );
     }
-    
+
     public function run(ServerRequestInterface $request)
     {
         $router = $this->container->get(Http\Router::class);
         $logger = $this->container->get(\Psr\Log\LoggerInterface::class);
         $jwtAuthorizer = $this->container->get(Auth\JwtAuthorizer::class);
-        
+        $session = $this->container->get(Http\Session::class);
+
         $relay = new RelayBuilder();
         $dispatcher = $relay->newInstance([
             new Middleware\RequestLoggerMiddleware($logger),
@@ -47,9 +52,15 @@ class App
                 $this->container->get('doctrine'),
                 $jwtAuthorizer
             ),
+            new Middleware\OAuthMiddleware(
+                $logger,
+                $this->container->get('doctrine'),
+                $jwtAuthorizer,
+                $session
+            ),
             new Middleware\FastRouteMiddleware($router->getRoutes()),
         ]);
-        
+
         return $dispatcher($request, new Response());
     }
 }

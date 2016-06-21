@@ -4,7 +4,6 @@ import TabbedNavigation from './tabbedNavigation';
 import UserButton from './userButton';
 
 const header = props => {
-    const isSignedIn = !!props.displayName;
     const navigationElement = (
         <TabbedNavigation
             id="mainNavigation"
@@ -12,8 +11,8 @@ const header = props => {
             selectedPage={props.selectedPage}
             tabs={Constants.navigationPages} />
     );
-    const navigation = isSignedIn ? navigationElement : undefined;
-    
+    const navigation = props.isSignedIn ? navigationElement : undefined;
+
     return (
         <header>
             <h1>Isaac's Learning Site</h1>
@@ -21,6 +20,7 @@ const header = props => {
                 {navigation}
                 <UserButton
                     displayName={props.displayName}
+                    isSignedIn={props.isSignedIn}
                     onClick={props.onUserMenuClick}
                     toggled={props.selectedPage === Constants.pages.PROFILE} />
             </span>
@@ -29,6 +29,7 @@ const header = props => {
 
 header.propTypes = {
     displayName: React.PropTypes.string,
+    isSignedIn: React.PropTypes.bool,
     onTabSelected: React.PropTypes.func.isRequired,
     onUserMenuClick: React.PropTypes.func.isRequired,
     selectedPage: React.PropTypes.string

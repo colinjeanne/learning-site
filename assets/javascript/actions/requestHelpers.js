@@ -1,10 +1,17 @@
 import { createAction } from 'redux-actions';
 
-const getGetHeaders = idToken =>
-    new Headers({
-        'Authorization': `Bearer ${idToken}`,
-        'Accept': 'application/json'
-    });
+const getGetHeaders = idToken => {
+    let headers = {
+        Accept: 'application/json'
+    };
+
+    if (idToken) {
+        // If there is no idToken then we are using cookies
+        headers['Authorization'] = `Bearer ${idToken}`;
+    }
+
+    return new Headers(headers);
+};
 
 const getPostOrPutHeaders = idToken =>
     new Headers({
@@ -19,11 +26,12 @@ export const getRequestAction = (uri, actionType) =>
     (dispatch, getState) => {
         const action = createAction(actionType);
         dispatch(action());
-        
+
         const idToken = getIdTokenFromState(getState());
         return fetch(
             uri,
             {
+                credentials: 'same-origin',
                 method: 'GET',
                 headers: getGetHeaders(idToken)
             }).
@@ -31,7 +39,7 @@ export const getRequestAction = (uri, actionType) =>
                 if (!response.ok) {
                     throw new Error(`Request failed: ${response.status}`);
                 }
-                
+
                 return response.json();
             }).
             then(json => dispatch(action(json))).
@@ -51,23 +59,23 @@ export const postRequestAction = (uri, actionType, payload) =>
                 volatile: true
             }
         });
-        
+
         const idToken = getIdTokenFromState(getState());
         const postPayload = {
             method: 'POST',
             headers: getPostOrPutHeaders(idToken)
         };
-        
+
         if (payload) {
             postPayload.body = JSON.stringify(payload);
         }
-        
+
         return fetch(uri, postPayload).
             then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed: ${response.status}`);
                 }
-                
+
                 return response.json();
             }).
             then(json => dispatch({
@@ -93,7 +101,7 @@ export const putRequestAction = (uri, actionType, payload) =>
                 volatile: true
             }
         });
-        
+
         const idToken = getIdTokenFromState(getState());
         return fetch(
             uri,
@@ -106,7 +114,7 @@ export const putRequestAction = (uri, actionType, payload) =>
                 if (!response.ok) {
                     throw new Error(`Request failed: ${response.status}`);
                 }
-                
+
                 return response.json();
             }).
             then(json => dispatch({

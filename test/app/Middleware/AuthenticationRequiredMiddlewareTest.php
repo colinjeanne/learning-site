@@ -9,16 +9,16 @@ use Zend\Diactoros\Uri;
 class AuthenticationRequiredMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
     private $response;
-    
+
     public function setUp()
     {
         $this->response = new Response();
     }
-    
+
     public function testHasCurrentUser()
     {
         $middleware = new AuthenticationRequiredMiddleware();
-        
+
         $request = self::createRequest([]);
         $response = $middleware(
             $request,
@@ -27,14 +27,14 @@ class AuthenticationRequiredMiddlewareTest extends \PHPUnit_Framework_TestCase
                 return $response;
             }
         );
-        
+
         $this->assertEquals(200, $response->getStatusCode());
     }
-    
+
     public function testNoCurrentUser()
     {
         $middleware = new AuthenticationRequiredMiddleware();
-        
+
         $request = self::createRequest();
         $response = $middleware(
             $request,
@@ -43,7 +43,7 @@ class AuthenticationRequiredMiddlewareTest extends \PHPUnit_Framework_TestCase
                 return $response;
             }
         );
-        
+
         $this->assertEquals(401, $response->getStatusCode());
         $this->assertTrue($response->hasHeader('WWW-Authenticate'));
         $this->assertEquals(
@@ -51,20 +51,20 @@ class AuthenticationRequiredMiddlewareTest extends \PHPUnit_Framework_TestCase
             $response->getHeaderLine('WWW-Authenticate')
         );
     }
-    
+
     private static function createRequest($currentUser = null)
     {
         $request = ServerRequestFactory::fromGlobals([], [], [], [], [])
             ->withMethod('GET')
             ->withUri(new Uri('http://example.com/'));
-        
+
         if ($currentUser !== null) {
             $request = $request->withAttribute(
-                AuthenticationMiddleware::CURRENT_USER_KEY,
+                \App\Auth\Constants::CURRENT_USER_KEY,
                 $currentUser
             );
         }
-        
+
         return $request;
     }
 }

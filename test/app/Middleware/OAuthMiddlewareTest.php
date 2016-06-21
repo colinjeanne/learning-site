@@ -1,6 +1,6 @@
 <?php namespace Test\Middleware;
 
-use App\Middleware\AuthenticationMiddleware;
+use App\Middleware\OAuthMiddleware;
 use Psr\Log\NullLogger;
 use Test\Middleware\Utilities\TestHandler;
 use Test\Middleware\Utilities\TestJwtAuthorizer;
@@ -8,7 +8,7 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequestFactory;
 use Zend\Diactoros\Uri;
 
-class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
+class OAuthMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
     private $response;
 
@@ -22,16 +22,23 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         $this->response = new Response();
     }
 
-    public function testNoAuthorizationHeader()
+    public function testUserAlreadyAuthenticated()
     {
         $claims = [];
         $request = self::createRequest();
+        $request = $request->withAttribute(
+            \App\Auth\Constants::CURRENT_USER_KEY,
+            'foo'
+        );
+
+        $session = self::createSession();
         $db = $this->createDatabase(true);
         $testHandler = new TestHandler();
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -41,19 +48,21 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($testHandler->isHandled());
-        $this->assertNull($testHandler->getCurrentUser());
+        $this->assertEquals('foo', $testHandler->getCurrentUser());
     }
 
-    public function testNonBearerAuthorization()
+    public function testNoAccessTokenCookie()
     {
         $claims = [];
-        $testHandler = new TestHandler();
-        $request = self::createRequest('Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==');
+        $request = self::createRequest();
+        $session = self::createSession();
         $db = $this->createDatabase(true);
-        $middleware = new AuthenticationMiddleware(
+        $testHandler = new TestHandler();
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -66,29 +75,7 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($testHandler->getCurrentUser());
     }
 
-    public function testBearerMissingToken()
-    {
-        $claims = [];
-        $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer');
-        $db = $this->createDatabase(true);
-        $middleware = new AuthenticationMiddleware(
-            new NullLogger(),
-            $db,
-            new TestJwtAuthorizer($claims)
-        );
-
-        $response = $middleware(
-            $request,
-            $this->response,
-            $testHandler
-        );
-
-        $this->assertTrue($testHandler->isHandled());
-        $this->assertNull($testHandler->getCurrentUser());
-    }
-
-    public function testInvalidToken()
+    public function testInvalidAccessToken()
     {
         // HMAC256 with iss and sub in the payload
         $token =
@@ -101,14 +88,16 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         ];
 
         $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer QWxhZGRpbjpvcGVuIHNlc2FtZQ==');
+        $request = self::createRequest();
+        $session = self::createSession('QWxhZGRpbjpvcGVuIHNlc2FtZQ==');
         $db = $this->createDatabase(true);
         $testAuthorizer = new TestJwtAuthorizer($claims);
         $testAuthorizer->setShouldFailGetClaims(true);
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            $testAuthorizer
+            $testAuthorizer,
+            $session
         );
 
         $response = $middleware(
@@ -133,12 +122,14 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         ];
 
         $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer ' . $token);
+        $request = self::createRequest();
+        $session = self::createSession($token);
         $db = $this->createDatabase(true);
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -163,12 +154,14 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         ];
 
         $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer ' . $token);
+        $request = self::createRequest();
+        $session = self::createSession($token);
         $db = $this->createDatabase(true);
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -194,12 +187,14 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         ];
 
         $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer ' . $token);
+        $request = self::createRequest();
+        $session = self::createSession($token);
         $db = $this->createDatabase(false);
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -225,12 +220,14 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         ];
 
         $testHandler = new TestHandler();
-        $request = self::createRequest('Bearer ' . $token);
+        $request = self::createRequest();
+        $session = self::createSession($token);
         $db = $this->createDatabase(true);
-        $middleware = new AuthenticationMiddleware(
+        $middleware = new OAuthMiddleware(
             new NullLogger(),
             $db,
-            new TestJwtAuthorizer($claims)
+            new TestJwtAuthorizer($claims),
+            $session
         );
 
         $response = $middleware(
@@ -271,19 +268,23 @@ class AuthenticationMiddlewareTest extends \PHPUnit_Framework_TestCase
         return $db;
     }
 
-    private static function createRequest($authenticationToken = null)
+    private static function createSession($authenticationToken = null)
     {
-        $request = ServerRequestFactory::fromGlobals([], [], [], [], [])
-            ->withMethod('GET')
-            ->withUri(new Uri('http://example.com/'));
-
-        if ($authenticationToken !== null) {
-            $request = $request->withHeader(
-                'Authorization',
+        $session = new \App\Http\ArraySession;
+        if ($authenticationToken) {
+            $session->put(
+                OAuthMiddleware::ID_TOKEN_SESSION_KEY,
                 $authenticationToken
             );
         }
 
-        return $request;
+        return $session;
+    }
+
+    private static function createRequest()
+    {
+        return ServerRequestFactory::fromGlobals([], [], [], [], [])
+            ->withMethod('GET')
+            ->withUri(new Uri('http://example.com/'));
     }
 }

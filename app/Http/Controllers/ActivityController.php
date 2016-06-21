@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Auth\Constants;
 use App\Middleware\AcceptMiddleware;
-use App\Middleware\AuthenticationMiddleware;
 use App\Middleware\AuthenticationRequiredMiddleware;
 use App\Middleware\ParseAsJsonMiddleware;
 use App\Models\Activity;
@@ -11,7 +11,8 @@ use App\Models\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Respect\Validation\Exceptions\NestedValidationExceptionInterface as NestedValidationException;
+use Respect\Validation\Exceptions\NestedValidationException;
+use Respect\Validation\Exceptions\ValidationException;
 use Respect\Validation\Validator as v;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\Response\JsonResponse;
@@ -33,18 +34,18 @@ function authorizeCurrentUserToReadActivity(
     callable $next
 ) {
     $activity = $request->getAttribute(READ_ACTIVITY_KEY);
-    
+
     $currentUser = $request->getAttribute(
-        AuthenticationMiddleware::CURRENT_USER_KEY
+        Constants::CURRENT_USER_KEY
     );
-    
+
     if (!$currentUser->getFamily()->hasActivity($activity)) {
         return new EmptyResponse(
             403,
             $response->getHeaders()
         );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -111,13 +112,13 @@ function validateActivityJsonForCreate(
     callable $next
 ) {
     $json = $request->getParsedBody();
-    
-    $validator = v::arrType()->
-        keyset(
-            v::key('name', v::strType()->length(0, 64)),
-            v::key('description', v::strType()->length(0, 4096), false)
+
+    $validator = v::arrayType()->
+        keySet(
+            v::key('name', v::stringType()->length(0, 64)),
+            v::key('description', v::stringType()->length(0, 4096), false)
         );
-    
+
     try {
         $validator->assert($json);
     } catch (NestedValidationException $e) {
@@ -127,7 +128,7 @@ function validateActivityJsonForCreate(
             $response->getHeaders()
         );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -138,16 +139,16 @@ function validateActivityJsonForUpdate(
 ) {
     $activity = $request->getAttribute(READ_ACTIVITY_KEY);
     $json = $request->getParsedBody();
-    
-    $validator = v::arrType()->
-        keyset(
-            v::key('name', v::strType()->length(0, 64)),
-            v::key('description', v::strType()->length(0, 4096), false),
+
+    $validator = v::arrayType()->
+        keySet(
+            v::key('name', v::stringType()->length(0, 64)),
+            v::key('description', v::stringType()->length(0, 4096), false),
             v::key(
                 'activityLinks',
-                v::arrType()->each(
-                    v::arrType()->keyset(
-                        v::key('title', v::strType()->length(1, 64)),
+                v::arrayType()->each(
+                    v::arrayType()->keySet(
+                        v::key('title', v::stringType()->length(1, 64)),
                         v::key('uri', v::url())
                     )
                 ),
@@ -155,7 +156,7 @@ function validateActivityJsonForUpdate(
             ),
             v::key(
                 'links',
-                v::arrType()->keySet(
+                v::arrayType()->keySet(
                     v::key(
                         'self',
                         v::equals(getActivityUri($request, $activity))
@@ -164,7 +165,7 @@ function validateActivityJsonForUpdate(
                 false
             )
         );
-    
+
     try {
         $validator->assert($json);
     } catch (NestedValidationException $e) {
@@ -173,8 +174,14 @@ function validateActivityJsonForUpdate(
             400,
             $response->getHeaders()
         );
+    } catch (ValidationException $e) {
+        return new JsonResponse(
+            [$e->getMainMessage()],
+            400,
+            $response->getHeaders()
+        );
     }
-    
+
     return $next($request, $response);
 }
 
@@ -189,7 +196,7 @@ function createUpdateActivityLinksMiddleware(ObjectManager $db)
     ) {
         $activity = $request->getAttribute(READ_ACTIVITY_KEY);
         $json = $request->getParsedBody();
-        
+
         if (array_key_exists('activityLinks', $json)) {
             $activityLinks = array_map(
                 function (array $activityJson) {
@@ -200,7 +207,7 @@ function createUpdateActivityLinksMiddleware(ObjectManager $db)
                 },
                 $json['activityLinks']
             );
-            
+
             // First remove all links which no longer apply
             $currentLinks = $activity->getLinks();
             for ($i = $currentLinks->count() - 1; $i >= 0; --$i) {
@@ -212,13 +219,13 @@ function createUpdateActivityLinksMiddleware(ObjectManager $db)
                         break;
                     }
                 }
-                
+
                 if (!$linkFound) {
                     $activity->removeLinkAtIndex($i);
                     $db->remove($link);
                 }
             }
-            
+
             // Now add the new links
             foreach ($activityLinks as $activityLink) {
                 if (!$activity->hasLink($activityLink)) {
@@ -229,13 +236,13 @@ function createUpdateActivityLinksMiddleware(ObjectManager $db)
                             $response->getHeaders()
                         );
                     }
-                    
+
                     $activity->addLink($activityLink);
                     $db->persist($activityLink);
                 }
             }
         }
-        
+
         return $next($request, $response);
     };
 }
@@ -243,7 +250,7 @@ function createUpdateActivityLinksMiddleware(ObjectManager $db)
 function updateActivityFromJson(Activity $activity, array $json)
 {
     $activity->setName($json['name']);
-    
+
     if (array_key_exists('description', $json)) {
         $activity->setDescription($json['description']);
     } else {
@@ -254,12 +261,12 @@ function updateActivityFromJson(Activity $activity, array $json)
 class ActivityController
 {
     private $db;
-    
+
     public function __construct(ObjectManager $db)
     {
         $this->db = $db;
     }
-    
+
     public function getMiddleware($methodName)
     {
         $middleware = [
@@ -267,30 +274,30 @@ class ActivityController
             new AcceptMiddleware(['application/json']),
             createEnsureCurrentUserFamilyMiddleware($this->db)
         ];
-        
+
         $readActivityMiddleware =
             \App\Http\Controllers\createReadObjectArgumentsMiddleware(
                 $this->db,
                 Activity::class,
                 READ_ACTIVITY_KEY
             );
-        
+
         switch ($methodName) {
             case 'getActivities':
                 break;
-            
+
             case 'getActivity':
                 $middleware[] = $readActivityMiddleware;
                 $middleware[] =
                     '\App\Http\Controllers\authorizeCurrentUserToReadActivity';
                 break;
-            
+
             case 'createActivity':
                 $middleware[] = new ParseAsJsonMiddleware();
                 $middleware[] =
                     '\App\Http\Controllers\validateActivityJsonForCreate';
                 break;
-            
+
             case 'updateActivity':
                 $middleware[] = new ParseAsJsonMiddleware();
                 $middleware[] = $readActivityMiddleware;
@@ -301,41 +308,41 @@ class ActivityController
                 $middleware[] = createUpdateActivityLinksMiddleware($this->db);
                 break;
         }
-        
+
         return $middleware;
     }
-    
+
     public function getActivities(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         return new JsonResponse(
             activitiesToJson($request, $currentUser->getFamily()),
             $response->getStatusCode(),
             $response->getHeaders()
         );
     }
-    
+
     public function createActivity(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         $family = $currentUser->getFamily();
-        
+
         $json = $request->getParsedBody();
         $activity = new Activity($json['name']);
         updateActivityFromJson($activity, $json);
-        
+
         if (!$family->hasActivity($activity)) {
             if ($family->hasMaxActivities()) {
                 return new JsonResponse(
@@ -344,54 +351,54 @@ class ActivityController
                     $response->getHeaders()
                 );
             }
-            
+
             $family->addActivity($activity);
-            
+
             $this->db->persist($activity);
             $this->db->flush();
         }
-        
+
         return new JsonResponse(
             activityToJson($request, $activity),
             201,
             $response->getHeaders()
         );
     }
-    
+
     public function getActivity(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         $activity = $request->getAttribute(READ_ACTIVITY_KEY);
-        
+
         return new JsonResponse(
             activityToJson($request, $activity),
             $response->getStatusCode(),
             $response->getHeaders()
         );
     }
-    
+
     public function updateActivity(
         ServerRequestInterface $request,
         ResponseInterface $response,
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         $activity = $request->getAttribute(READ_ACTIVITY_KEY);
         $json = $request->getParsedBody();
-        
+
         updateActivityFromJson($activity, $json);
-        
+
         $this->db->flush();
-        
+
         return new JsonResponse(
             activityToJson($request, $activity),
             $response->getStatusCode(),

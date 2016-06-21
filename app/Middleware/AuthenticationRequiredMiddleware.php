@@ -1,5 +1,6 @@
 <?php namespace App\Middleware;
 
+use App\Auth\Constants;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -11,15 +12,15 @@ class AuthenticationRequiredMiddleware
         callable $next
     ) {
         $currentUser = $request->getAttribute(
-            AuthenticationMiddleware::CURRENT_USER_KEY
+            Constants::CURRENT_USER_KEY
         );
-        
+
         if ($currentUser === null) {
             return $response
                 ->withStatus(401)
                 ->withHeader('WWW-Authenticate', 'Bearer');
         }
-        
+
         return $next($request, $response);
     }
 }

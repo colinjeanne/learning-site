@@ -2,8 +2,10 @@ import Constants from './../../constants/constants';
 import React from 'react';
 
 const userButton = props => {
-    const isSignedIn = !!props.displayName;
-    const className = isSignedIn ? 'g-signin2 signedIn' : 'g-signin2';
+    const className = props.isSignedIn ? 'g-signin2 signedIn' : 'g-signin2';
+    const narrowClassName = props.isSignedIn ?
+        'userTileNarrow signedIn' :
+        'userTileNarrow';
     const toggledClass = props.toggled ? 'userTileToggled' : undefined;
 
     const PROFILE = Constants.pages.PROFILE;
@@ -26,7 +28,10 @@ const userButton = props => {
 
     return (
         <span id="userTile">
-            {isSignedIn ? buttonElement : undefined}
+            {props.isSignedIn ? buttonElement : undefined}
+            <div className={narrowClassName}>
+                <a href="/oauth">Sign In</a>
+            </div>
             <div
                 className={className}
                 data-onfailure="signinFailed"
@@ -36,6 +41,7 @@ const userButton = props => {
 
 userButton.propTypes = {
     displayName: React.PropTypes.string,
+    isSignedIn: React.PropTypes.bool,
     onClick: React.PropTypes.func.isRequired,
     toggled: React.PropTypes.bool.isRequired
 };
