@@ -208,6 +208,27 @@ body {
    background: lightcoral;
 }
 
+.skillClassLegend {
+   margin-bottom: 1em;
+}
+
+.skillClassLegend ol {
+   font-weight: bold;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   text-align: center;
+}
+
+.skillClassLegend li {
+   padding: 0.5em;
+}
+
+.skillClassLegend div {
+   background-color: white;
+   padding: 0.25em;
+}
+
 .skillText {
    padding: 0.5em;
 }
@@ -293,6 +314,11 @@ body {
 
    .skillFilter {
       float: right;
+   }
+
+   .skillClassLegend ol {
+      display: flex;
+      justify-content: space-around;
    }
 }
 

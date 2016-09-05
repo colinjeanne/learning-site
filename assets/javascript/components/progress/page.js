@@ -1,6 +1,7 @@
 import { childPropType } from './../propTypes';
 import React from 'react';
 import SkillCalendar from './skillCalendar';
+import SkillClassLegend from './SkillClassLegend';
 import SkillFilter from './skillFilter';
 
 const areSkillEqual = (skillA, skillB) =>
@@ -39,18 +40,21 @@ const page = props => {
                     onSkillChange={onSkillChange}
                     skills={filterSkills(child.skills, props.skillFilter)} />
             </section>
-        )});
-    
+        );
+    });
+
     const noChildrenMessage =
         'You have no children currently, add some!';
 
     return (
         <section>
+            <SkillClassLegend />
             <SkillFilter
                 onSkillFiltered={props.onSkillFiltered} />
             {props.children.length ? childrenListData : noChildrenMessage}
         </section>
-    )};
+    );
+};
 
 page.propTypes = {
     children: React.PropTypes.arrayOf(

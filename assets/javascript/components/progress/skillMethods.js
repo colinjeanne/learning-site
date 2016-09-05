@@ -1,5 +1,27 @@
 import Data from './../../data/development';
 
+export const ageClasses = [
+    'infant',
+    'toddler',
+    'toddler-preschool',
+    'preschool',
+    'preschool-preprimary',
+    'preprimary',
+    'preprimary-primary',
+    'primary'
+];
+
+export const ageClassNames = {
+    infant: 'Infant',
+    toddler: 'Toddler',
+    'toddler-preschool': 'Toddler/Preschool',
+    preschool: 'Preschool',
+    'preschool-preprimary': 'Preschool/Preprimary',
+    preprimary: 'Preprimary',
+    'preprimary-primary': 'Preprimary/Primary',
+    primary: 'Primary'
+};
+
 export const skillClasses = () =>
     Data.reduce(
         (allClasses, skillClass) =>
@@ -30,7 +52,7 @@ export const benchmarkText = skill => {
     if ((skill[3] - 1 < 0) || (skill[3] - 1 >= skillBenchmarks.length)) {
         return '';
     }
-    
+
     return skillBenchmarks[skill[3] - 1].benchmark;
 };
 
@@ -57,6 +79,6 @@ export const compareSkills = (skillA, skillB) => {
             comp = 1;
         }
     }
-    
+
     return comp;
 };
