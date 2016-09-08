@@ -185,20 +185,20 @@ body {
       -45deg,
       orchid,
       orchid 10px,
-      darkmagenta 10px,
-      darkmagenta 20px
+      crimson 10px,
+      crimson 20px
    );
 }
 
 .preprimary {
-   background: darkmagenta;
+   background: crimson;
 }
 
 .preprimary-primary {
    background: repeating-linear-gradient(
       -45deg,
-      darkmagenta,
-      darkmagenta 10px,
+      crimson,
+      crimson 10px,
       lightcoral 10px,
       lightcoral 20px
    );
